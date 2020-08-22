@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject Earth;
     public float Speed;
+    public float SpeedRotation; 
     void Start()
     {
 
@@ -13,10 +14,12 @@ public class PlayerMovement : MonoBehaviour
     {
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
-
         var position = new Vector3(vertical, 0, -horizontal);
 
         transform.RotateAround(Earth.transform.position, position, Speed * Time.deltaTime);
-        Earth.transform.Rotate(position);
+
+        var rotationEarth = position * SpeedRotation * Time.deltaTime;
+        Earth.transform.Rotate(rotationEarth);
+
     }
 }
