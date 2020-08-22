@@ -6,7 +6,7 @@ public class PlayerCollect : MonoBehaviour
 {
     public enum Player { Solar, Night };
     public Player PlayerType;
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter(Collider col)
     {
         if (PlayerType == Player.Solar)
         {
