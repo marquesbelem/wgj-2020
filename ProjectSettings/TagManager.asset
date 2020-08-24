@@ -6,6 +6,10 @@ TagManager:
   tags:
   - SolarCrystal
   - NightCrystal
+  - NightResource
+  - SolarResource
+  - TempleNight
+  - TempleSolar
   layers:
   - Default
   - TransparentFX
