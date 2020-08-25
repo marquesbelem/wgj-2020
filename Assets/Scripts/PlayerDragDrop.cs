@@ -59,6 +59,8 @@ public class PlayerDragDrop : MonoBehaviour
     {
         _Resource = game;
         //fazer as animações de pegar o recurso
+
+        //posição correta será arrumadar depois que tiver os assets
         var position = new Vector3(.2f, .1f, -0.7f);
         SetParentResource(parent, position);
     }
@@ -76,8 +78,13 @@ public class PlayerDragDrop : MonoBehaviour
 
         //fazer as animações de soltar o recurso
 
+        //posição correta será arrumadar depois que tiver os assets
         var position = new Vector3(0, 1f, 0);
         SetParentResource(parent, position);
+
+        Temple temple = parent.gameObject.GetComponent<Temple>();
+        temple.UptadeCountResources();
+        
         _Resource = null;
     }
 }
