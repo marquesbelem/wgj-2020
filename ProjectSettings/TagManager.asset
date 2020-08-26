@@ -10,6 +10,7 @@ TagManager:
   - SolarResource
   - TempleNight
   - TempleSolar
+  - Planet
   layers:
   - Default
   - TransparentFX
