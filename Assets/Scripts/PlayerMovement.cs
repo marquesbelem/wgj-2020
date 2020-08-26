@@ -17,9 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * Time.deltaTime * SensitivityX);
-        VerticalLookRotation += Input.GetAxis("Mouse Y") * Time.deltaTime * SensitivityY;
-        VerticalLookRotation = Mathf.Clamp(VerticalLookRotation, -AngleLimit, AngleLimit);
-        CameraTarget.localEulerAngles = Vector3.left * VerticalLookRotation;
+        //VerticalLookRotation += Input.GetAxis("Mouse Y") * Time.deltaTime * SensitivityY;
+        //VerticalLookRotation = Mathf.Clamp(VerticalLookRotation, -AngleLimit, AngleLimit);
+        //CameraTarget.localEulerAngles = Vector3.left * VerticalLookRotation;
 
         var horizontal = Input.GetAxis("Horizontal") * Speed;
         var vertical = Input.GetAxis("Vertical") * Speed;
