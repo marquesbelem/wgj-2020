@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject Earth;
     public float Speed;
-    public float SpeedRotation;
     public Vector3 MaxPosition;
     public Vector3 MinPosition;
     void Update()
