@@ -16,13 +16,13 @@ public class PlayerMovement : MonoBehaviour
         var rotationEarth = position * SpeedRotation * Time.deltaTime;
         Earth.transform.Rotate(rotationEarth);
 
-        if (Math.Round(horizontal) == -1)
-            transform.rotation = Quaternion.Euler(0, -90, 0);
-        if (Math.Round(horizontal) == 1)
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-        if (Math.Round(vertical) == -1)
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        if (Math.Round(vertical) == 1)
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+       // if (Math.Round(horizontal) == -1)
+            //transform.rotation = Quaternion.Euler(0, -90, 0);
+        //if (Math.Round(horizontal) == 1)
+          //  transform.rotation = Quaternion.Euler(0, 90, 0);
+        //if (Math.Round(vertical) == -1)
+           // transform.rotation = Quaternion.Euler(0, 180, 0);
+       // if (Math.Round(vertical) == 1)
+           // transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
