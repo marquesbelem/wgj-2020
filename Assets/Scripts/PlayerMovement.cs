@@ -6,23 +6,15 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Earth;
     public float Speed;
     public float SpeedRotation;
-   
+    public Vector3 MaxPosition;
+    public Vector3 MinPosition;
     void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
-        var position = new Vector3(-(float)Math.Round(vertical), 0, (float)Math.Round(horizontal));
+        var horizontal = Input.GetAxis("Horizontal") * Speed;
+        var vertical = Input.GetAxis("Vertical") * Speed;
 
-        var rotationEarth = position * SpeedRotation * Time.deltaTime;
-        Earth.transform.Rotate(rotationEarth);
-
-       // if (Math.Round(horizontal) == -1)
-            //transform.rotation = Quaternion.Euler(0, -90, 0);
-        //if (Math.Round(horizontal) == 1)
-          //  transform.rotation = Quaternion.Euler(0, 90, 0);
-        //if (Math.Round(vertical) == -1)
-           // transform.rotation = Quaternion.Euler(0, 180, 0);
-       // if (Math.Round(vertical) == 1)
-           // transform.rotation = Quaternion.Euler(0, 0, 0);
+        vertical *= Time.deltaTime;
+        horizontal *= Time.deltaTime;
+        transform.Translate(horizontal, 0, vertical);
     }
 }
