@@ -11,15 +11,15 @@ GameObject:
   - component: {fileID: 6186353750289089131}
   - component: {fileID: 6186353750289089130}
   - component: {fileID: 6186353750289089125}
-  - component: {fileID: 6186353750289089124}
   - component: {fileID: 6186353750289089127}
   - component: {fileID: 6186353750289089126}
   - component: {fileID: 6186353750289089129}
   - component: {fileID: 6186353750289089128}
   - component: {fileID: 6186353750289089135}
   - component: {fileID: 6186353750289089134}
+  - component: {fileID: 2121064402}
   m_Layer: 0
-  m_Name: Player Night 1
+  m_Name: Player Night
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,20 +89,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &6186353750289089124
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6186353750289089121}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6186353750289089127
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -144,8 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 1
-  DistanceForResource: 10
-  Rig: {fileID: 2196735785096627555}
+  DistanceForResource: 5
 --- !u!114 &6186353750289089128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +179,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &2121064402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6186353750289089121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.50272673, y: 1.55, z: 1}
+  m_Center: {x: -0.015053499, y: -0.26999998, z: 0}
 --- !u!1 &6186353750612651156
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,20 +307,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!64 &6186353750614222165
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2196735785096627555}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3048099295106157379, guid: 712c71789766aee45996558d7ef13546, type: 3}
 --- !u!1 &6186353751862083317
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,12 +486,6 @@ PrefabInstance:
 --- !u!4 &5931502980870783677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 712c71789766aee45996558d7ef13546,
-    type: 3}
-  m_PrefabInstance: {fileID: 6186353750614222166}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2196735785096627555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5451053725103087669, guid: 712c71789766aee45996558d7ef13546,
     type: 3}
   m_PrefabInstance: {fileID: 6186353750614222166}
   m_PrefabAsset: {fileID: 0}

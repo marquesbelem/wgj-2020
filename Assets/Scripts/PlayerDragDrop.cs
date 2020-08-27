@@ -9,7 +9,6 @@ public class PlayerDragDrop : MonoBehaviour
 
     private GameObject _Resource;
     private Animator _Animator;
-    public GameObject Rig;
     void Start()
     {
         _Animator = GetComponent<Animator>();
@@ -26,7 +25,9 @@ public class PlayerDragDrop : MonoBehaviour
             {
                 if (hit.transform != null)
                 {
-                    if (Vector3.Distance(Rig.transform.position, hit.collider.gameObject.transform.position) <= DistanceForResource)
+                    Debug.Log(hit.collider.name);
+                    if (gameObject.transform.position.x <= (hit.collider.gameObject.transform.position.x + DistanceForResource) ||
+                        gameObject.transform.position.z <= (hit.collider.gameObject.transform.position.z + DistanceForResource))
                     {
                         if (PlayerType == Player.Solar)
                         {
@@ -36,6 +37,7 @@ public class PlayerDragDrop : MonoBehaviour
                             }
                             if (hit.collider.gameObject.CompareTag("TempleSolar"))
                             {
+                                Debug.Log("templo solar");
                                 DropResource(hit.collider.gameObject, hit.collider.gameObject.transform);
                             }
                         }
@@ -60,6 +62,9 @@ public class PlayerDragDrop : MonoBehaviour
 
     IEnumerator DragResource(GameObject game, Transform parent)
     {
+        if (gameObject.transform.childCount > 3)
+            yield break;
+
         _Resource = game;
         _Animator.SetBool("Squats", true);
         yield return new WaitForSeconds(2.3f);

@@ -387,7 +387,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.46
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -396,7 +396,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.66
+    m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -447,13 +447,13 @@ GameObject:
   - component: {fileID: 2517256204233681460}
   - component: {fileID: 2517256204233681461}
   - component: {fileID: 2517256204233681466}
-  - component: {fileID: 2517256204233681467}
   - component: {fileID: 2517256204233681464}
   - component: {fileID: 2517256204233681465}
   - component: {fileID: 2517256204233681462}
   - component: {fileID: 2517256204233681463}
   - component: {fileID: 2517256204233681456}
   - component: {fileID: 2517256204233681471}
+  - component: {fileID: 1460568586}
   m_Layer: 0
   m_Name: Player Solar
   m_TagString: Player
@@ -525,20 +525,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &2517256204233681467
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517256204233681470}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2517256204233681464
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -580,8 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 0
-  DistanceForResource: 10
-  Rig: {fileID: 8785074749773299095}
+  DistanceForResource: 5
 --- !u!114 &2517256204233681463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +615,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1460568586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2517256204233681470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4941661, y: 1.3936615, z: 1}
+  m_Center: {x: 0.0037715435, y: 0.05630188, z: 0}
 --- !u!1 &2517256204824085707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,7 +1433,6 @@ GameObject:
   m_Component:
   - component: {fileID: 969936733529906737}
   - component: {fileID: 621400518073126785}
-  - component: {fileID: 8785074749773299092}
   m_Layer: 0
   m_Name: night.001
   m_TagString: Untagged
@@ -1500,7 +1497,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2931352044985265688, guid: 3c61f99e5ecba6741b36ffe2b952c238, type: 3}
+  m_Mesh: {fileID: 2931352044985265688, guid: 9ef9015a68146f74cb86962306007ab5, type: 3}
   m_Bones:
   - {fileID: 2254716227613793297}
   - {fileID: 8890959998371234192}
@@ -1540,20 +1537,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0005612001, y: 0.0074868184, z: -0.039949864}
     m_Extent: {x: 0.045739926, y: 0.05061566, z: 0.07859844}
   m_DirtyAABB: 0
---- !u!64 &8785074749773299092
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8785074749773299095}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2931352044985265688, guid: 3c61f99e5ecba6741b36ffe2b952c238, type: 3}
 --- !u!1 &9186542531660332450
 GameObject:
   m_ObjectHideFlags: 0
