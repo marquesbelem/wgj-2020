@@ -198,13 +198,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Squats
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -425,7 +425,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7530351796323160805}
-    m_Position: {x: -60, y: 320, z: 0}
+    m_Position: {x: -60, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1062717035997909233}
     m_Position: {x: -70, y: 590, z: 0}
