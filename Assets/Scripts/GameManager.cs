@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Invoke("PlaySoundLoopSolar", Mathf.Round(IntroSolar.clip.length));
+        EnableObjsNight(false);
     }
 
     void Update()

@@ -43,8 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ed1e20686054f4c915ae98c98c2172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjNight: []
-  ObjSolar: []
+  ObjNight:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ObjSolar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   SkyboxNight: {fileID: 2100000, guid: 2559a62ee486acc4490f8e7c80ab15bd, type: 2}
   SkyboxFinal: {fileID: 0}
   IntroSolar: {fileID: 0}
