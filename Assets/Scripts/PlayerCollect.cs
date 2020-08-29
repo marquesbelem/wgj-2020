@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollect : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerCollect : MonoBehaviour
         {
             if (col.gameObject.CompareTag("SolarCrystal"))
             {
-                ActionSolar();
+                StartCoroutine(ActionSolar());
                 Destroy(col.gameObject);
             }
         }
@@ -27,13 +28,13 @@ public class PlayerCollect : MonoBehaviour
         {
             if (col.gameObject.CompareTag("NightCrystal"))
             {
-                ActionNight();
+                StartCoroutine(ActionNight());
                 Destroy(col.gameObject);
             }
         }
     }
 
-    void ActionSolar()
+    IEnumerator ActionSolar()
     {
         var temple = GameObject.FindGameObjectWithTag("TempleSolar").GetComponent<Temple>();
         _TotalCountResourcesSolar = temple.TotalCountResources;
@@ -42,12 +43,13 @@ public class PlayerCollect : MonoBehaviour
 
         if(_CurrentCountResourcesSolar>= _TotalCountResourcesSolar)
         {
+            GameManager.Instance.ChangeSkybox(0);
+            yield return new WaitForSeconds(0.5f);
             GameManager.Instance.EnableObjsNight(true);
             GameManager.Instance.EnableObjsSolar(false);
-            GameManager.Instance.ChangeSkybox(0);
         }
     }
-    void ActionNight()
+    IEnumerator ActionNight()
     {
         var temple = GameObject.FindGameObjectWithTag("TempleNight").GetComponent<Temple>();
         _TotalCountResourcesNight = temple.TotalCountResources;
@@ -58,8 +60,8 @@ public class PlayerCollect : MonoBehaviour
         {
             //Encontro das players
             GameManager.Instance.ChangeSkybox(1);
+            yield return new WaitForSeconds(0.5f);
+            SceneManager.LoadScene("GameEncontro");
         }
     }
-
-
 }
