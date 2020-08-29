@@ -9,6 +9,8 @@ public class PlayerDragDrop : MonoBehaviour
 
     private GameObject _Resource;
     private Animator _Animator;
+    public AudioSource Drag;
+    public AudioSource Drop;
     void Start()
     {
         _Animator = GetComponent<Animator>();
@@ -25,7 +27,6 @@ public class PlayerDragDrop : MonoBehaviour
             {
                 if (hit.transform != null)
                 {
-                    Debug.Log(hit.collider.name);
                     if (gameObject.transform.position.x <= (hit.collider.gameObject.transform.position.x + DistanceForResource) ||
                         gameObject.transform.position.z <= (hit.collider.gameObject.transform.position.z + DistanceForResource))
                     {
@@ -37,8 +38,7 @@ public class PlayerDragDrop : MonoBehaviour
                             }
                             if (hit.collider.gameObject.CompareTag("TempleSolar"))
                             {
-                                Debug.Log("templo solar");
-                                DropResource(hit.collider.gameObject, hit.collider.gameObject.transform);
+                                StartCoroutine(DropResource(hit.collider.gameObject, hit.collider.gameObject.transform));
                             }
                         }
 
@@ -50,8 +50,7 @@ public class PlayerDragDrop : MonoBehaviour
                             }
                             if (hit.collider.gameObject.CompareTag("TempleNight"))
                             {
-                                Debug.Log("TempleNight");
-                                DropResource(hit.collider.gameObject, hit.collider.gameObject.transform);
+                                StartCoroutine(DropResource(hit.collider.gameObject, hit.collider.gameObject.transform));
                             }
                         }
                     }
@@ -62,13 +61,17 @@ public class PlayerDragDrop : MonoBehaviour
 
     IEnumerator DragResource(GameObject game, Transform parent)
     {
-        if (gameObject.transform.childCount > 3)
+        if (gameObject.transform.childCount > 4)
             yield break;
 
+        Debug.Log("drag");
         _Resource = game;
         _Animator.SetBool("Squats", true);
+
+        if (!Drag.isPlaying)
+            Drag.Play();
         yield return new WaitForSeconds(2.3f);
-        //posição correta será arrumadar depois que tiver os assets
+
         var position = new Vector3(0.28f, -0.28f, 0.24f);
         SetParentResource(parent, position);
         _Animator.SetBool("Squats", false);
@@ -76,20 +79,30 @@ public class PlayerDragDrop : MonoBehaviour
 
     void SetParentResource(Transform parent, Vector3 position)
     {
+        _Resource.transform.localPosition = Vector3.zero;
         _Resource.transform.SetParent(parent);
         _Resource.transform.localPosition = position;
     }
 
-    void DropResource(GameObject game, Transform parent)
+    IEnumerator DropResource(GameObject game, Transform parent)
     {
         if (_Resource == null)
-            return;
+            yield break;
 
         //fazer as animações de soltar o recurso
+        _Animator.SetBool("Drop", true);
 
-        //posição correta será arrumadar depois que tiver os assets
-        var position = new Vector3(0, 1f, 0);
+        if (!Drop.isPlaying)
+            Drop.Play();
+
+        yield return new WaitForSeconds(2.3f);
+
+        var position = new Vector3(0, 0, 0.00409f);
         SetParentResource(parent, position);
+        _Animator.SetBool("Drop", false);
+
+        yield return new WaitForSeconds(1.3f);
+        _Resource.gameObject.SetActive(false);
 
         Temple temple = parent.gameObject.GetComponent<Temple>();
         temple.UptadeCountResources();

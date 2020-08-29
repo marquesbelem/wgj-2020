@@ -5,6 +5,7 @@ public class GravityBody : MonoBehaviour
 {
     private GravityAttractor Planet;
     private Rigidbody rigidbody;
+    
     private void Awake()
     {
         Planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<GravityAttractor>();

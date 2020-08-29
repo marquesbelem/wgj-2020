@@ -9,19 +9,13 @@ public class Temple : MonoBehaviour
     public int TotalCountResources;
     public int CurrentResources;
     public List<GameObject> Crystal;
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
+   
     public void UptadeCountResources()
     {
-        CurrentResources = transform.childCount;
+        if (CurrentResources >TotalCountResources)
+            return;
+
+        CurrentResources++;
         Crystal[CurrentResources - 1].SetActive(true);
 
         if (CurrentResources == TotalCountResources)
