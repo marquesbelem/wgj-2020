@@ -67,10 +67,11 @@ public class PlayerDragDrop : MonoBehaviour
         Debug.Log("drag");
         _Resource = game;
         _Animator.SetBool("Squats", true);
-        yield return new WaitForSeconds(2.3f);
-        //posição correta será arrumadar depois que tiver os assets
+
         if (!Drag.isPlaying)
             Drag.Play();
+        yield return new WaitForSeconds(2.3f);
+
         var position = new Vector3(0.28f, -0.28f, 0.24f);
         SetParentResource(parent, position);
         _Animator.SetBool("Squats", false);
@@ -90,10 +91,12 @@ public class PlayerDragDrop : MonoBehaviour
 
         //fazer as animações de soltar o recurso
         _Animator.SetBool("Drop", true);
-        yield return new WaitForSeconds(2.3f);
 
         if (!Drop.isPlaying)
             Drop.Play();
+
+        yield return new WaitForSeconds(2.3f);
+
         var position = new Vector3(0, 0, 0.00409f);
         SetParentResource(parent, position);
         _Animator.SetBool("Drop", false);
