@@ -15,7 +15,7 @@ public class SceneFinal : MonoBehaviour
     {
         yield return new WaitForSeconds(16f);
         Canvas.SetActive(true);
-        yield return new WaitForSeconds(16f);
+        yield return new WaitForSeconds(113f);
         SceneManager.LoadScene("Menu");
     }
 }
