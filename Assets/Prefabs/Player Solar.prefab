@@ -386,7 +386,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.9245283, g: 0.7374154, b: 0.44045925, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -567,9 +567,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 0
-  DistanceForResource: 5
+  DistanceForResource: 10
   Drag: {fileID: 0}
   Drop: {fileID: 0}
+  MouseDefault: {fileID: 2800000, guid: ea492065e0593e843b151dba1c4631fd, type: 3}
+  MouseDrag: {fileID: 2800000, guid: 9033e7c4ad079304a842c7a42353df4e, type: 3}
+  MouseDrop: {fileID: 2800000, guid: 9aed0449d5d77c84cb49136037805f90, type: 3}
 --- !u!114 &2517256204233681463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1582,13 +1585,13 @@ PrefabInstance:
     - target: {fileID: 7784622012676651677, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.033
       objectReference: {fileID: 0}
     - target: {fileID: 7784622012676651677, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 0c6b6519c275ff84682401c808522555, type: 3}
+      objectReference: {fileID: 8300000, guid: 58800f11782a6544cb7bb8b482803235, type: 3}
     - target: {fileID: 7784622012676651677, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}
       propertyPath: m_PlayOnAwake

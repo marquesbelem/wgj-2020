@@ -131,9 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 1
-  DistanceForResource: 5
+  DistanceForResource: 10
   Drag: {fileID: 0}
   Drop: {fileID: 0}
+  MouseDefault: {fileID: 2800000, guid: ea492065e0593e843b151dba1c4631fd, type: 3}
+  MouseDrag: {fileID: 2800000, guid: 9033e7c4ad079304a842c7a42353df4e, type: 3}
+  MouseDrop: {fileID: 2800000, guid: 9aed0449d5d77c84cb49136037805f90, type: 3}
 --- !u!114 &6186353750289089128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,8 +305,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -353,8 +356,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0, g: 0.12941177, b: 1, a: 1}
+  m_Intensity: 0.73
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -363,7 +366,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.275
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -396,7 +399,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 1.9
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -503,13 +506,13 @@ PrefabInstance:
     - target: {fileID: 7784622012676651677, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.033
       objectReference: {fileID: 0}
     - target: {fileID: 7784622012676651677, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 0c6b6519c275ff84682401c808522555, type: 3}
+      objectReference: {fileID: 8300000, guid: 58800f11782a6544cb7bb8b482803235, type: 3}
     - target: {fileID: 7784622012676651677, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -518,7 +521,7 @@ PrefabInstance:
     - target: {fileID: 7784622012676651677, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}
       propertyPath: Loop
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7784622012676651678, guid: 9b8c190c45751854f9a38bc3a5954718,
         type: 3}

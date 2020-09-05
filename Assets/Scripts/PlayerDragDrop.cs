@@ -3,68 +3,75 @@ using UnityEngine;
 
 public class PlayerDragDrop : MonoBehaviour
 {
+    private bool DropInTemple;
     public enum Player { Solar, Night };
+
     public Player PlayerType;
+
     public float DistanceForResource;
 
     private GameObject _Resource;
+
     private Animator _Animator;
+
     public AudioSource Drag;
+
     public AudioSource Drop;
-    void Start()
+
+    public Texture2D MouseDefault;
+
+    public Texture2D MouseDrag;
+
+    public Texture2D MouseDrop;
+
+    private void Start()
     {
+        SetStartCursor();
         _Animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        RaycastHit hit;
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
+            if (hit.transform != null)
             {
-                if (hit.transform != null)
+                Debug.Log("distance: " + Vector3.Distance(transform.position, hit.collider.gameObject.transform.position));
+                if (Vector3.Distance(transform.position, hit.collider.gameObject.transform.position) < DistanceForResource)
                 {
-                    if (gameObject.transform.position.x <= (hit.collider.gameObject.transform.position.x + DistanceForResource) ||
-                        gameObject.transform.position.z <= (hit.collider.gameObject.transform.position.z + DistanceForResource))
+                    if (PlayerType == Player.Solar)
                     {
-                        if (PlayerType == Player.Solar)
-                        {
-                            if (hit.collider.gameObject.CompareTag("SolarResource"))
-                            {
-                                StartCoroutine(DragResource(hit.collider.gameObject, gameObject.transform));
-                            }
-                            if (hit.collider.gameObject.CompareTag("TempleSolar"))
-                            {
-                                StartCoroutine(DropResource(hit.collider.gameObject, hit.collider.gameObject.transform));
-                            }
-                        }
-
-                        if (PlayerType == Player.Night)
-                        {
-                            if (hit.collider.gameObject.CompareTag("NightResource"))
-                            {
-                                StartCoroutine(DragResource(hit.collider.gameObject, gameObject.transform));
-                            }
-                            if (hit.collider.gameObject.CompareTag("TempleNight"))
-                            {
-                                StartCoroutine(DropResource(hit.collider.gameObject, hit.collider.gameObject.transform));
-                            }
-                        }
+                        Action(hit, "SolarResource");
                     }
+
+                    if (PlayerType == Player.Night)
+                    {
+                        Action(hit, "NightResource");
+                    }
+                }
+                else if (DropInTemple)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        StartCoroutine(DropResource(hit.collider.gameObject, hit.collider.gameObject.transform));
+                    }
+                }
+                else
+                {
+                    Cursor.SetCursor(MouseDefault, Vector2.zero, CursorMode.ForceSoftware);
                 }
             }
         }
     }
 
-    IEnumerator DragResource(GameObject game, Transform parent)
+    private IEnumerator DragResource(GameObject game, Transform parent)
     {
         if (gameObject.transform.childCount > 4)
             yield break;
 
-        Debug.Log("drag");
         _Resource = game;
         _Animator.SetBool("Squats", true);
 
@@ -77,14 +84,14 @@ public class PlayerDragDrop : MonoBehaviour
         _Animator.SetBool("Squats", false);
     }
 
-    void SetParentResource(Transform parent, Vector3 position)
+    private void SetParentResource(Transform parent, Vector3 position)
     {
         _Resource.transform.localPosition = Vector3.zero;
         _Resource.transform.SetParent(parent);
         _Resource.transform.localPosition = position;
     }
 
-    IEnumerator DropResource(GameObject game, Transform parent)
+    private IEnumerator DropResource(GameObject game, Transform parent)
     {
         if (_Resource == null)
             yield break;
@@ -108,6 +115,44 @@ public class PlayerDragDrop : MonoBehaviour
         temple.UptadeCountResources();
 
         _Resource = null;
+        DropInTemple = false;
+    }
+
+    private void SetStartCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.SetCursor(MouseDefault, Vector2.zero, CursorMode.ForceSoftware);
+    }
+
+    private void Action(RaycastHit hit, string tagResource)
+    {
+        if (hit.collider.gameObject.CompareTag(tagResource))
+        {
+            Cursor.SetCursor(MouseDrag, Vector2.zero, CursorMode.ForceSoftware);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(DragResource(hit.collider.gameObject, gameObject.transform));
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.CompareTag("TempleNight") || coll.CompareTag("TempleSolar"))
+        {
+            Cursor.SetCursor(MouseDrop, Vector2.zero, CursorMode.ForceSoftware);
+            DropInTemple = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider coll)
+    {
+        if (coll.CompareTag("TempleNight") || coll.CompareTag("TempleSolar"))
+        {
+            Cursor.SetCursor(MouseDefault, Vector2.zero, CursorMode.ForceSoftware);
+            DropInTemple = false;
+        }
     }
 }
 
