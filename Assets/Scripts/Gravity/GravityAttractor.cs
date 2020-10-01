@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class GravityAttractor : MonoBehaviour
-{
-    public float Gravity = -10; 
+public class GravityAttractor : MonoBehaviour {
+    public float gravity = -10; 
     
-    public void Attract(Transform body)
-    {
-        Vector3 target = (body.position - transform.position).normalized;
-        Vector3 bodyUp = body.up;
-
-        body.rotation = Quaternion.FromToRotation(bodyUp, target) * body.rotation;
-        body.gameObject.GetComponent<Rigidbody>().AddForce(target * Gravity);
+    public void Attract(GravityBody body) {
+        Transform bodyTransform = body.transform;
+        Vector3 direction = (bodyTransform.position - transform.position).normalized;
+        bodyTransform.rotation = Quaternion.FromToRotation(bodyTransform.up, direction) * bodyTransform.rotation;
+        body.rigidbodyRef.AddForce(direction * gravity, ForceMode.Force);
     }
+
+    public void FixedUpdate() {
+        GravityBody.instanceList.ForEach(Attract);
+    }
+
 }

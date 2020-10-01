@@ -43,23 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ed1e20686054f4c915ae98c98c2172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjNight:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ObjSolar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  SkyboxNight: {fileID: 2100000, guid: 2559a62ee486acc4490f8e7c80ab15bd, type: 2}
-  SkyboxFinal: {fileID: 0}
-  IntroSolar: {fileID: 0}
-  IntroNight: {fileID: 0}
-  LoopSolar: {fileID: 0}
-  LoopNight: {fileID: 0}
+  skyboxDay: {fileID: 2100000, guid: c959071aa7948b34ca23b46de40aa9f7, type: 2}
+  skyboxNight: {fileID: 2100000, guid: 2559a62ee486acc4490f8e7c80ab15bd, type: 2}
+  skyboxTwilight: {fileID: 2100000, guid: de763382d67f8e84e8cbc39ed02ad3c1, type: 2}
+  introSolar: {fileID: 0}
+  introNight: {fileID: 0}
+  loopSolar: {fileID: 0}
+  loopNight: {fileID: 0}
+  solarOnlyType: SolarOnly
+  nightOnlyType: NightOnly
+  twilightOnlyType: TwilightOnly
+  curDayTime: 0
