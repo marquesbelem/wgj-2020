@@ -111,12 +111,6 @@ namespace SD {
             transform.rotation = curRotation;
         }
 
-        private void OnDrawGizmos() {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(curPivotPoint, 0.5f);
-            Gizmos.DrawLine(curPivotPoint, curPivotPoint + (playerTransform.up * curHeightOffset));
-        }
-
     }
 }
 

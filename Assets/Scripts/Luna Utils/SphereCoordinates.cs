@@ -8,12 +8,12 @@ using UnityEditor;
 
 public class SphereCoordinates : MonoBehaviour {
 
-    public Vector3 rotation;
+    public Vector2 rotation;
     public float radius = 1f;
     public bool setRotation = true;
     public bool applyOnUpdate = false;
 
-    public Quaternion QuaternionRotation => Quaternion.Euler(rotation);
+    public Quaternion QuaternionRotation => Quaternion.Euler(rotation.x, 0f, rotation.y);
 
     public void ApplyToTransform() {
         transform.position = QuaternionRotation * Vector3.up * radius;
@@ -24,7 +24,8 @@ public class SphereCoordinates : MonoBehaviour {
     public void GetFromTransform() {
         Vector3 pos = transform.position;
         radius = pos.magnitude;
-        rotation = Quaternion.FromToRotation(Vector3.up, pos).eulerAngles;
+        Vector3 euler = Quaternion.FromToRotation(Vector3.up, pos).eulerAngles;
+        rotation = new Vector2(euler.x, euler.z);
     }
 
     private void Update() {

@@ -23,17 +23,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0c86cb44fdd2b36478450b4df91f70a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.38433382
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0c86cb44fdd2b36478450b4df91f70a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.74207455
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0c86cb44fdd2b36478450b4df91f70a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.028201923
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0c86cb44fdd2b36478450b4df91f70a6,
         type: 3}
@@ -75,6 +75,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c86cb44fdd2b36478450b4df91f70a6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c86cb44fdd2b36478450b4df91f70a6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c86cb44fdd2b36478450b4df91f70a6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 0c86cb44fdd2b36478450b4df91f70a6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -100,6 +115,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 123696016468690102, guid: 7bc9b2307581a294e94ec564e3a2f1bc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3575934471303081084, guid: 7bc9b2307581a294e94ec564e3a2f1bc,
         type: 3}
       propertyPath: rotation.x
@@ -248,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 7830791261128837332, guid: 7bc9b2307581a294e94ec564e3a2f1bc,
         type: 3}
       propertyPath: m_Name
-      value: CollectableApple Variant
+      value: Collectable Apple
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bc9b2307581a294e94ec564e3a2f1bc, type: 3}

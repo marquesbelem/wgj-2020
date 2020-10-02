@@ -20,6 +20,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 123696016468690102, guid: 7bc9b2307581a294e94ec564e3a2f1bc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3575934471303081084, guid: 7bc9b2307581a294e94ec564e3a2f1bc,
         type: 3}
       propertyPath: rotation.x
@@ -163,7 +168,7 @@ PrefabInstance:
     - target: {fileID: 7830791261128837332, guid: 7bc9b2307581a294e94ec564e3a2f1bc,
         type: 3}
       propertyPath: m_Name
-      value: CollectableFlower Variant
+      value: Collectable Flower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bc9b2307581a294e94ec564e3a2f1bc, type: 3}
@@ -238,17 +243,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d792994f2c0861d45babf37f6fe02dd5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.19886
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d792994f2c0861d45babf37f6fe02dd5,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.19886
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d792994f2c0861d45babf37f6fe02dd5,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.19886
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: d792994f2c0861d45babf37f6fe02dd5,
         type: 3}

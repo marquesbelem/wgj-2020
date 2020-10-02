@@ -49,6 +49,7 @@ public class DeliverSpot : MonoBehaviour {
     public void InteractWith(PlayerInteractor interactor) => interactor.BeginDeliverAllTo(this);
 
     public void Deliver(List<Collectable> collectables) {
+        collectables.ForEach(c => c.onDelivered.Invoke());
         collected.AddRange(collectables);
         UpdateCollectedPositions();
         if (wishedResources.TrueForAll(w => collected.Count(c => c.type == w.type) >= w.quantity)) {

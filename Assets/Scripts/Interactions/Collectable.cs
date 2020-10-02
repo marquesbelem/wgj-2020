@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Interactable))]
 public class Collectable : MonoBehaviour {
@@ -19,6 +20,8 @@ public class Collectable : MonoBehaviour {
     }
 
     public int type;
+    public UnityEvent onCollected;
+    public UnityEvent onDelivered;
 
     public bool CanInteractWith(PlayerInteractor interactor) {
         DeliverSpot.WishedResource wishedResource = DeliverSpot.FirstEnabled.wishedResources.Find(w => w.type == type);
@@ -30,6 +33,7 @@ public class Collectable : MonoBehaviour {
     public void InteractWith(PlayerInteractor interactor) {
         InteractableRef.enabled = false;
         interactor.BeginCollectResource(this);
+        onCollected.Invoke();
     }
 
 }

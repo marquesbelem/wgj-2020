@@ -43,7 +43,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4353297797325875878
 MonoBehaviour:
@@ -60,6 +60,12 @@ MonoBehaviour:
   collidersInside: []
   chackTag: 1
   targetTag: Player
+  onEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3822974973673466963
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +181,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPoints: []
   wishedResources: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6730638426139552130
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 6730638426139552130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 4142664478106731987}
   m_RootOrder: 1

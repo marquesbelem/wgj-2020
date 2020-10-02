@@ -94,6 +94,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad45d2dbbd0276b45b346fe0e9bb1176,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad45d2dbbd0276b45b346fe0e9bb1176,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad45d2dbbd0276b45b346fe0e9bb1176,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ad45d2dbbd0276b45b346fe0e9bb1176,
         type: 3}
       propertyPath: m_Name
@@ -263,7 +278,7 @@ PrefabInstance:
     - target: {fileID: 7830791261128837332, guid: 7bc9b2307581a294e94ec564e3a2f1bc,
         type: 3}
       propertyPath: m_Name
-      value: CollectableButterfly Variant
+      value: Collectable Butterfly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bc9b2307581a294e94ec564e3a2f1bc, type: 3}
