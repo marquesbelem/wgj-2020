@@ -42,6 +42,7 @@ namespace SD {
 
         public void Start() {
             Init();
+            Cursor.lockState = CursorLockMode.Locked;
         }
         public void FixedUpdate() {
             float targetPlayerHeightOffset = Mathf.Lerp(heightOffsetRangeMin, heightOffsetRangeMax, 1f - ZoomInput);
