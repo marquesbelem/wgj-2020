@@ -11212,6 +11212,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb95d4872783644988811c1e9f55f28, type: 3}
+--- !u!1 &320075448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 320075449}
+  m_Layer: 0
+  m_Name: Musical Puzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &320075449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320075448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_Children:
+  - {fileID: 1676421015}
+  m_Father: {fileID: 1294268375}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &324591065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11322,7 +11353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 337588151}
   m_Layer: 0
-  m_Name: coletaveis
+  m_Name: Collectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28633,6 +28664,7 @@ Transform:
   - {fileID: 1853296270}
   - {fileID: 1740798563}
   - {fileID: 337588151}
+  - {fileID: 320075449}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30734,6 +30766,103 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3390558720134950976, guid: 5e91256aa39d58042b5f7c14ab98aa01, type: 3}
+--- !u!1001 &1676421014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 320075449}
+    m_Modifications:
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -76.77223
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 94.19773
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -43.28756
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.18038838
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000001564622
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.31992596
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9301115
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131714924166358931, guid: e12dcafd26933114ead92ae53c923e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: Puzzle Note
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e12dcafd26933114ead92ae53c923e0c, type: 3}
+--- !u!4 &1676421015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3900741137677126476, guid: e12dcafd26933114ead92ae53c923e0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676421014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1676421016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9131714924166358931, guid: e12dcafd26933114ead92ae53c923e0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676421014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1676421017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676421016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c79eed4da5e744992e3a99fb8dc060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 340.39325, y: 352.9621, z: 39.180428}
+  radius: 129.00002
+  setRotation: 1
+  applyOnUpdate: 0
 --- !u!1001 &1699029984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35771,7 +35900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1740798563}
   m_Layer: 0
-  m_Name: cenario
+  m_Name: Scenary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
