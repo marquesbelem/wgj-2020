@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bubble Green
-  m_Shader: {fileID: -6465566751694194690, guid: 064071c6d06c9cb4c94825600dfff088,
+  m_Name: Bubble Blue
+  m_Shader: {fileID: -6465566751694194690, guid: 682e6ef92c462d041aab9fa1b44d6eff,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -63,6 +63,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - HighlightIntensity: 1
+    - Intensity: 2
+    - Power: 2
     - Vector1_A5898C90: 0
     - _AlphaClip: 0
     - _Blend: 0
@@ -87,8 +89,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_89880DA7: {r: 1, g: 1, b: 1, a: 1}
-    - HighlightColor: {r: 1, g: 0.115502015, b: 0, a: 1}
+    - HighlightColor: {r: 1, g: 0.02233529, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 1, b: 0.13333344, a: 0}
+    - _Color: {r: 0.35, g: 0.5228915, b: 0.7, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

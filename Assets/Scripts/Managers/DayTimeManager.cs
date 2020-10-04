@@ -50,7 +50,6 @@ public class DayTimeManager : MonoBehaviour {
             case DayTime.Solar:
                 activeAtSolar.ForEach(o => o.SetActive(true));
                 activeAtNight.ForEach(o => o.SetActive(false));
-                FindObjectsOfType<DayTimeEvents>().ForEach(i => i.onSolar.Invoke());
                 RenderSettings.skybox = skyboxDay;
                 introNight.Stop();
                 loopNight.Stop();
@@ -62,7 +61,6 @@ public class DayTimeManager : MonoBehaviour {
             case DayTime.Night:
                 activeAtSolar.ForEach(o => o.SetActive(false));
                 activeAtNight.ForEach(o => o.SetActive(true));
-                FindObjectsOfType<DayTimeEvents>().ForEach(i => i.onNight.Invoke());
                 RenderSettings.skybox = skyboxNight;
                 introSolar.Stop();
                 loopSolar.Stop();
@@ -72,7 +70,6 @@ public class DayTimeManager : MonoBehaviour {
                 cameraController.playerTransform = nightCharacter;
                 break;
             case DayTime.Twilight:
-                FindObjectsOfType<DayTimeEvents>().ForEach(i => i.onTwilight.Invoke());
                 RenderSettings.skybox = skyboxTwilight;
                 break;
         }

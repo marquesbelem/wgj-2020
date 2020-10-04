@@ -59,7 +59,7 @@ public class CameraController : MonoBehaviour {
         else {
             playerToShotTransition = Mathf.SmoothDamp(playerToShotTransition, 0f, ref playerToShotTransitionSpeed, lerpSmoothTime);
             Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x);
-            targetRotationArroundPlayer += rotationInput;
+            targetRotationArroundPlayer += rotationInput * SettingsManager.cameraSensibility;
             targetRotationArroundPlayer.x = Mathf.Clamp(targetRotationArroundPlayer.x, verticalRotationRangeMin, verticalRotationRangeMax);
             targetPlayerRotation = playerTransform.rotation * Quaternion.Euler(targetRotationArroundPlayer);
         }
