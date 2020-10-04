@@ -165,9 +165,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  onCompletedAll:
-    m_PersistentCalls:
-      m_Calls: []
+  onlyActiveOnLevel:
+  - list:
+    - {fileID: 1922543843}
+  - list:
+    - {fileID: 320075448}
   onEnteredAny:
     m_PersistentCalls:
       m_Calls:
@@ -187,17 +189,6 @@ MonoBehaviour:
       m_Calls: []
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922543843}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 14288034}
         m_MethodName: set_CurText
         m_Mode: 5
@@ -209,18 +200,8 @@ MonoBehaviour:
           m_StringArgument: Reach notes in the right order
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 320075448}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  - m_PersistentCalls:
+  onCompletedAll:
+    m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &29837928
 PrefabInstance:
@@ -5491,7 +5472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &320075449
 Transform:
   m_ObjectHideFlags: 0
@@ -18288,17 +18269,17 @@ PrefabInstance:
     - target: {fileID: 2553176849315357412, guid: a9bc21f155a407a47ab1fcd51fe65816,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9498308
+      value: 2.9498317
       objectReference: {fileID: 0}
     - target: {fileID: 2553176849315357412, guid: a9bc21f155a407a47ab1fcd51fe65816,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.322171
+      value: 5.3221726
       objectReference: {fileID: 0}
     - target: {fileID: 2553176849315357412, guid: a9bc21f155a407a47ab1fcd51fe65816,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.861655
+      value: 10.861658
       objectReference: {fileID: 0}
     - target: {fileID: 2553176849315357412, guid: a9bc21f155a407a47ab1fcd51fe65816,
         type: 3}
