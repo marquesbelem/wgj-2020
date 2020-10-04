@@ -1,8 +1,11 @@
 ﻿using GalloUtils;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class SphereSpawner : MonoBehaviour {
 
@@ -42,6 +45,8 @@ public class SphereSpawner : MonoBehaviour {
             }
         }
     }
+
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         if (IsGlobal) {
             Gizmos.color = Color.green;
@@ -60,5 +65,6 @@ public class SphereSpawner : MonoBehaviour {
             Handles.DrawWireArc(Vector3.zero, -Vector3.forward, posNormalized, spawnRegionAngularTreshold, posMagnitude);
         }
     }
+#endif
 
 }
