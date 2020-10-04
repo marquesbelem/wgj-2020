@@ -1,5 +1,4 @@
 ﻿using GalloUtils;
-using SD;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,16 +17,15 @@ public class DayTimeManager : MonoBehaviour {
     public AudioSource introNight;
     public AudioSource loopSolar;
     public AudioSource loopNight;
-    
-    public string solarOnlyType = "SolarOnly";
-    public string nightOnlyType = "NightOnly";
-    public string twilightOnlyType = "TwilightOnly";
-
-    public DayTime curDayTime = DayTime.Solar;
 
     public CameraController cameraController;
     public Transform solarCharacter;
     public Transform nightCharacter;
+
+    public List<GameObject> activeAtNight;
+    public List<GameObject> activeAtSolar;
+
+    private DayTime curDayTime = DayTime.Night;
 
     void Start() {
         UpdateDayTime();
@@ -48,61 +46,35 @@ public class DayTimeManager : MonoBehaviour {
     }
 
     private void UpdateDayTime() {
-        UpdateGlobalInstances();
-        UpdateSkybox();
-        UpdateAudios();
-        UpdateCameraTarget();
-    }
-    private void UpdateGlobalInstances() {
-        foreach (GlobalInstance g in GlobalInstance.GetInstanceListOfType(nightOnlyType)) {
-            g.gameObject.SetActive(curDayTime == DayTime.Night);
-        }
-        foreach (GlobalInstance g in GlobalInstance.GetInstanceListOfType(solarOnlyType)) {
-            g.gameObject.SetActive(curDayTime == DayTime.Solar);
-        }
-        foreach (GlobalInstance g in GlobalInstance.GetInstanceListOfType(twilightOnlyType)) {
-            g.gameObject.SetActive(curDayTime == DayTime.Twilight);
-        }
-    }
-    private void UpdateSkybox() {
         switch (curDayTime) {
             case DayTime.Solar:
+                activeAtSolar.ForEach(o => o.SetActive(true));
+                activeAtNight.ForEach(o => o.SetActive(false));
+                FindObjectsOfType<DayTimeEvents>().ForEach(i => i.onSolar.Invoke());
                 RenderSettings.skybox = skyboxDay;
-                break;
-            case DayTime.Night:
-                RenderSettings.skybox = skyboxNight;
-                break;
-            case DayTime.Twilight:
-                RenderSettings.skybox = skyboxTwilight;
-                break;
-            default:
-                break;
-        }
-    }
-    private void UpdateAudios() {
-        switch (curDayTime) {
-            case DayTime.Solar:
+                introNight.Stop();
                 loopNight.Stop();
                 introSolar.Play();
+                CancelInvoke("PlaySoundLoopNight");
                 Invoke("PlaySoundLoopSolar", introSolar.clip.length);
+                cameraController.playerTransform = solarCharacter;
                 break;
             case DayTime.Night:
+                activeAtSolar.ForEach(o => o.SetActive(false));
+                activeAtNight.ForEach(o => o.SetActive(true));
+                FindObjectsOfType<DayTimeEvents>().ForEach(i => i.onNight.Invoke());
+                RenderSettings.skybox = skyboxNight;
+                introSolar.Stop();
                 loopSolar.Stop();
                 introNight.Play();
+                CancelInvoke("PlaySoundLoopSolar");
                 Invoke("PlaySoundLoopNight", introNight.clip.length);
+                cameraController.playerTransform = nightCharacter;
                 break;
             case DayTime.Twilight:
+                FindObjectsOfType<DayTimeEvents>().ForEach(i => i.onTwilight.Invoke());
+                RenderSettings.skybox = skyboxTwilight;
                 break;
-            default:
-                break;
-        }
-    }
-    private void UpdateCameraTarget() {
-        if (curDayTime == DayTime.Night) {
-            cameraController.playerTransform = nightCharacter;
-        }
-        else if (curDayTime == DayTime.Solar) {
-            cameraController.playerTransform = solarCharacter;
         }
     }
 

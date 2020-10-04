@@ -5,16 +5,30 @@ using UnityEngine.Events;
 
 public class MusicalSequence : MonoBehaviour {
 
-    public static MusicalSequence instance;
+    public static List<MusicalSequence> instanceList = new List<MusicalSequence>();
     private void OnEnable() {
-        instance = this;
+        instanceList.Add(this);
     }
+    private void OnDisable() {
+        instanceList.Remove(this);
+    }
+    public static MusicalSequence FirstEnabled {
+        get {
+            if (instanceList.Count == 0) {
+                return null;
+            }
+            else {
+                return instanceList[0];
+            }
+        }
+    }
+
 
     public List<int> sequence;
     public UnityEvent onSequenceSuccess;
     public UnityEvent onNoteError;
 
-    private int curIndex = 0;
+    public int curIndex = 0;
 
     public bool TryProgress(int noteId) {
         if (curIndex < sequence.Count) {
@@ -26,6 +40,7 @@ public class MusicalSequence : MonoBehaviour {
                 return true;
             }
             else {
+                curIndex = 0;
                 onNoteError.Invoke();
                 return false;
             }

@@ -2,79 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
+[ExecuteAlways]
 public class SphereCoordinates : MonoBehaviour {
 
-    public Vector2 rotation;
     public float radius = 1f;
-    public bool setRotation = true;
-    public bool applyOnUpdate = false;
-
-    public Quaternion QuaternionRotation => Quaternion.Euler(rotation.x, 0f, rotation.y);
 
     public void ApplyToTransform() {
-        transform.position = QuaternionRotation * Vector3.up * radius;
-        if (setRotation) {
-            transform.rotation = QuaternionRotation;
-        }
+        transform.position = transform.up * radius;
     }
     public void GetFromTransform() {
-        Vector3 pos = transform.position;
-        radius = pos.magnitude;
-        Vector3 euler = Quaternion.FromToRotation(Vector3.up, pos).eulerAngles;
-        rotation = new Vector2(euler.x, euler.z);
+        radius = transform.position.magnitude;
     }
 
+    private void OnEnable() {
+        GetFromTransform();
+    }
     private void Update() {
-        if (applyOnUpdate) {
+        if (!Application.isPlaying) {
             ApplyToTransform();
         }
     }
-
-}
-
-#if UNITY_EDITOR
-[CanEditMultipleObjects, CustomEditor(typeof(SphereCoordinates))]
-public class SphereCoordinatesEditor : Editor {
-
-    SphereCoordinates obj;
-    SerializedObject serializedObj;
-    SerializedProperty rotationProperty;
-    SerializedProperty radiusProperty;
-    SerializedProperty setRotationProperty;
-    SerializedProperty applyOnUpdateProperty;
-
-    private void OnEnable() {
-        obj = (SphereCoordinates)target;
-        serializedObj = new SerializedObject(obj);
-        rotationProperty = serializedObj.FindProperty("rotation");
-        radiusProperty = serializedObj.FindProperty("radius");
-        setRotationProperty = serializedObj.FindProperty("setRotation");
-        applyOnUpdateProperty = serializedObj.FindProperty("applyOnUpdate");
-        obj.GetFromTransform();
-    }
-
-    public override void OnInspectorGUI() {
-        serializedObj.Update();
-        EditorGUILayout.PropertyField(rotationProperty);
-        EditorGUILayout.PropertyField(radiusProperty);
-        if (serializedObj.ApplyModifiedProperties()) {
-            obj.ApplyToTransform();
-        }
-        serializedObj.Update();
-        EditorGUILayout.PropertyField(setRotationProperty);
-        EditorGUILayout.PropertyField(applyOnUpdateProperty);
-        serializedObj.ApplyModifiedProperties();
-
-        if (GUILayout.Button("Get from Transform")) {
-            Undo.RecordObject(obj, "Sphere coordinates from transform");
-            obj.GetFromTransform();
-        }
+    private void OnValidate() {
+        ApplyToTransform();
     }
 
 }
-#endif
-

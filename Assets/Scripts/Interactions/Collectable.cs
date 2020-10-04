@@ -24,9 +24,12 @@ public class Collectable : MonoBehaviour {
     public UnityEvent onDelivered;
 
     public bool CanInteractWith(PlayerInteractor interactor) {
-        DeliverSpot.WishedResource wishedResource = DeliverSpot.FirstEnabled.wishedResources.Find(w => w.type == type);
-        if (wishedResource != null) {
-            return wishedResource.quantity > interactor.CountResourcesOfType(type);
+        DeliverSpot deliverSpot = DeliverSpot.FirstEnabled;
+        if (deliverSpot != null) {
+            DeliverSpot.WishedResource wishedResource = deliverSpot.wishedResources.Find(w => w.type == type);
+            if (wishedResource != null) {
+                return wishedResource.quantity > interactor.CountResourcesOfType(type);
+            }
         }
         return false;
     }

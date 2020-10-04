@@ -10,8 +10,8 @@ public class MusicalNote : MonoBehaviour {
     public UnityEvent onError;
 
     public void TriggerNote() {
-        if (MusicalSequence.instance != null) {
-            if (MusicalSequence.instance.TryProgress(id)) {
+        if (MusicalSequence.FirstEnabled != null) {
+            if (MusicalSequence.FirstEnabled.TryProgress(id)) {
                 onSuccess.Invoke();
             }
             else {

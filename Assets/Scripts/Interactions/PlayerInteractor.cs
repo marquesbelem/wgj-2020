@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class PlayerInteractor : MonoBehaviour {
 
+    public static List<PlayerInteractor> instanceList = new List<PlayerInteractor>();
+    private void OnEnable() {
+        instanceList.Add(this);
+    }
+    private void OnDisable() {
+        instanceList.Remove(this);
+    }
+    public static PlayerInteractor FirstEnabled {
+        get {
+            if (instanceList.Count == 0) {
+                return null;
+            }
+            else {
+                return instanceList[0];
+            }
+        }
+    }
+
     public DayTime playerType;
     public Animator animatorRef;
     public Collider colliderRef;
@@ -15,7 +33,7 @@ public class PlayerInteractor : MonoBehaviour {
     public float dropAnimTime = 1f;
 
     private DeliverSpot curDeliverSpot;
-    private readonly List<Collectable> collectedResources = new List<Collectable>();
+    private List<Collectable> collectedResources = new List<Collectable>();
     public bool HasAnyResources => collectedResources.Count > 0;
     public int CountResourcesOfType(int type) => collectedResources.Count(c => c.type == type);
 
@@ -43,7 +61,6 @@ public class PlayerInteractor : MonoBehaviour {
         if (deliverSound != null) {
             deliverSound.Play();
         }
-        collectedResources.RemoveAt(0);
         curDeliverSpot = deliverSpot;
         animatorRef.SetTrigger("Drop");
         Invoke("EndDeliverAllTo", dropAnimTime);
@@ -51,6 +68,7 @@ public class PlayerInteractor : MonoBehaviour {
     }
     public void EndDeliverAllTo() {
         curDeliverSpot.Deliver(collectedResources);
+        collectedResources.Clear();
         PlayerMovement.allowed = true;
     }
 

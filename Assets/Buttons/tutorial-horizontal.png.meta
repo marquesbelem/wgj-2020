@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: c6748fb3efe53d348b71183f6caf51cc
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1806364837470153180
+    second: tutorial-horizontal_0
+  - first:
+      213: -4689110280170777188
+    second: tutorial-horizontal_1
+  - first:
+      213: -7383359779197084988
+    second: tutorial-horizontal_2
+  - first:
+      213: 5923303061732528357
+    second: tutorial-horizontal_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -133,7 +145,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: tutorial-horizontal_3
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1500
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd92a28cf3f711910800000000000000
+      internalID: 1806364837470153180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tutorial-horizontal_1
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 1544
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95d9cd4b0feceeb0800000000000000
+      internalID: -4689110280170777188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tutorial-horizontal_2
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 1496
+        width: 101
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca1d084669098990800000000000000
+      internalID: -7383359779197084988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tutorial-horizontal_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 1414
+        height: 1998
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e01d8b60ccc33250800000000000000
+      internalID: 5923303061732528357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -25,6 +25,7 @@ public class DeliverSpot : MonoBehaviour {
         }
     }
 
+
     private Interactable _interactable = null;
     public Interactable InteractableRef {
         get {
@@ -35,6 +36,7 @@ public class DeliverSpot : MonoBehaviour {
         }
     }
 
+
     public List<Transform> slotPoints;
     [Serializable] public class WishedResource {
         public int type;
@@ -43,7 +45,10 @@ public class DeliverSpot : MonoBehaviour {
     public List<WishedResource> wishedResources;
     public UnityEvent onCompleted;
 
-    private readonly List<Collectable> collected = new List<Collectable>();
+    private List<Collectable> collected = new List<Collectable>();
+
+    public int WishedQuantityOfType(int type) => wishedResources.Sum(w => (w.type == type? 1:0) * w.quantity);
+    public int CollectedQuantityOfType(int type) => collected.Count(c => c.type == type);
 
     public bool CanInteractWith(PlayerInteractor interactor) => interactor.HasAnyResources;
     public void InteractWith(PlayerInteractor interactor) => interactor.BeginDeliverAllTo(this);
@@ -53,6 +58,7 @@ public class DeliverSpot : MonoBehaviour {
         collected.AddRange(collectables);
         UpdateCollectedPositions();
         if (wishedResources.TrueForAll(w => collected.Count(c => c.type == w.type) >= w.quantity)) {
+            Debug.Log("Deliver complete!");
             onCompleted.Invoke();
         }
     }

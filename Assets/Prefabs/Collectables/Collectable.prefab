@@ -114,9 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c79eed4da5e744992e3a99fb8dc060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: -0, y: 0, z: 0}
   radius: 0
-  setRotation: 1
   applyOnUpdate: 0
 --- !u!114 &7187491243537197853
 MonoBehaviour:
@@ -216,7 +214,7 @@ PrefabInstance:
     - target: {fileID: 2062770952368327214, guid: 35ef2e5fa4acd1f4a8b8a2375e50b9c9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2062770952368327214, guid: 35ef2e5fa4acd1f4a8b8a2375e50b9c9,
         type: 3}
