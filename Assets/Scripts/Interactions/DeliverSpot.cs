@@ -62,6 +62,11 @@ public class DeliverSpot : MonoBehaviour {
             onCompleted.Invoke();
         }
     }
+
+    public bool WouldCompleteWith(List<Collectable> collectedResources) {
+        return wishedResources.TrueForAll(w => w.quantity == CollectedQuantityOfType(w.type) + collectedResources.Count(c => c.type == w.type));
+    }
+
     private void UpdateCollectedPositions() {
         for (int i = 0; i < collected.Count; i++) {
             collected[i].gameObject.SetActive(true);

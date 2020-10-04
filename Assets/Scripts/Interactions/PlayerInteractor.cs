@@ -31,6 +31,7 @@ public class PlayerInteractor : MonoBehaviour {
     public float squatAnimTime = 1f;
     public string dropAnimTrigger = "Drop";
     public float dropAnimTime = 1f;
+    public string collectedAllNewGoalText = "Deliver all resources to the goddess";
 
     private DeliverSpot curDeliverSpot;
     private List<Collectable> collectedResources = new List<Collectable>();
@@ -46,6 +47,9 @@ public class PlayerInteractor : MonoBehaviour {
 
     public void BeginCollectResource(Collectable collectable) {
         collectedResources.Add(collectable);
+        if (DeliverSpot.FirstEnabled.WouldCompleteWith(collectedResources)) {
+            GoalPanel.instance.ShowNewText(collectedAllNewGoalText);
+        }
         if (collectSound != null) {
             collectSound.Play();
         }
