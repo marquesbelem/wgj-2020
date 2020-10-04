@@ -15,6 +15,7 @@ public class MusicalNote : MonoBehaviour {
                 onSuccess.Invoke();
             }
             else {
+                Debug.Log("Wrong note played");
                 onError.Invoke();
             }
         }
