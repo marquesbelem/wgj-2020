@@ -1,4 +1,5 @@
 ﻿using GalloUtils;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,8 +55,10 @@ public class DayTimeManager : MonoBehaviour {
                 introNight.Stop();
                 loopNight.Stop();
                 introSolar.Play();
-                CancelInvoke("PlaySoundLoopNight");
-                Invoke("PlaySoundLoopSolar", introSolar.clip.length);
+                StopAllCoroutines();
+                //CancelInvoke("PlaySoundLoopNight");
+                StartCoroutine(PlaySoundLoopSolar());
+                //Invoke("PlaySoundLoopSolar", introSolar.clip.length);
                 cameraController.playerTransform = solarCharacter;
                 break;
             case DayTime.Night:
@@ -65,8 +68,10 @@ public class DayTimeManager : MonoBehaviour {
                 introSolar.Stop();
                 loopSolar.Stop();
                 introNight.Play();
-                CancelInvoke("PlaySoundLoopSolar");
-                Invoke("PlaySoundLoopNight", introNight.clip.length);
+                StopAllCoroutines();
+                //CancelInvoke("PlaySoundLoopSolar");
+                StartCoroutine(PlaySoundLoopNight());
+                //Invoke("PlaySoundLoopNight", introNight.clip.length);
                 cameraController.playerTransform = nightCharacter;
                 break;
             case DayTime.Twilight:
@@ -75,11 +80,13 @@ public class DayTimeManager : MonoBehaviour {
         }
     }
 
-    private void PlaySoundLoopSolar() {
+    private IEnumerator PlaySoundLoopSolar() {
+        yield return new WaitForSeconds(introSolar.clip.length);
         introSolar.Stop();
         loopSolar.Play();
     }
-    private void PlaySoundLoopNight() {
+    private IEnumerator PlaySoundLoopNight() {
+        yield return new WaitForSeconds(introNight.clip.length);
         introNight.Stop();
         loopNight.Play();
     }

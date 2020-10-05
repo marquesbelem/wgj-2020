@@ -47,10 +47,10 @@ public class CameraShot : MonoBehaviour {
         }
     }
 
-    public void SetCameraShot() {
+    public void OnEnable() {
         selectedList.Add(this);
     }
-    public void ResetCameraShot() {
+    public void OnDisable() {
         selectedList.Remove(this);
     }
 
