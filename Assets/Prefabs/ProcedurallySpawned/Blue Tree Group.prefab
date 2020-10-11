@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fb83fb260c22b4daf1d00279b85fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularTreshold: 5
+  angularTreshold: 6
   identifiers:
   - Tree
 --- !u!114 &4683677042317589936

@@ -20,11 +20,18 @@ public class SphereSpawner : MonoBehaviour {
     public float SpawnRegionRadiansTreshold => Mathf.PI * 2f * spawnRegionAngularTreshold / 360f;
 
     public List<string> obstacleIds;
+    public float maxTimeRandomizing = 5f;
 
     public bool IsGlobal => transform.position == Vector3.zero;
 
+    private float startTime;
+
     void Start() {
+        TrySpawnAll();
+    }
+    public void TrySpawnAll() {
         foreach (Spawnable spawnable in spawnables) {
+            startTime = Time.realtimeSinceStartup;
             for (int i = 0; i < spawnable.quantity; i++) {
                 GameObject prefab = spawnable.prefabs.RandomElement();
                 float prefabRegionSize = 0f;
@@ -33,16 +40,24 @@ public class SphereSpawner : MonoBehaviour {
                     prefabRegionSize = prefabObstacle.angularTreshold;
                 }
                 Vector3 direction;
+                float curTime;
                 do {
                     direction = UnityEngine.Random.insideUnitSphere.normalized;
-                } while (direction == Vector3.zero 
-                    || SpawnObstacle.instanceList.Exists(o => (obstacleIds.Count == 0 || obstacleIds.Exists(id => o.identifiers.Contains(id))) && Vector3.Angle(o.transform.position.normalized, direction) <= o.angularTreshold + prefabRegionSize)
-                    || (!IsGlobal && Vector3.Angle(transform.position.normalized, direction) >= spawnRegionAngularTreshold));
+                    curTime = Time.realtimeSinceStartup;
+                } while ((direction == Vector3.zero
+                        || SpawnObstacle.instanceList.Exists(o => (obstacleIds.Count == 0 || obstacleIds.Exists(id => o.identifiers.Contains(id))) && Vector3.Angle(o.transform.position.normalized, direction) <= o.angularTreshold + prefabRegionSize)
+                        || (!IsGlobal && Vector3.Angle(transform.position.normalized, direction) >= spawnRegionAngularTreshold))
+                    && (curTime - startTime) <= maxTimeRandomizing);
+                if (curTime - startTime > maxTimeRandomizing) {
+                    Debug.Log("Timed out spawning " + prefab + " #" + (i+1));
+                    break;
+                }
                 Transform newObj = Instantiate(prefab).transform;
                 newObj.position = direction.normalized * radius;
                 newObj.up = direction;
                 newObj.parent = parent;
             }
+            Debug.Log("Time spent spawning: " + (Time.realtimeSinceStartup - startTime));
         }
     }
 
