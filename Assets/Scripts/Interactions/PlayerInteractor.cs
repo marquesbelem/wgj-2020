@@ -21,6 +21,7 @@ public class PlayerInteractor : MonoBehaviour {
             }
         }
     }
+    public static bool isInputAllowed = true;
 
     public DayTime playerType;
     public Animator animatorRef;
@@ -39,9 +40,11 @@ public class PlayerInteractor : MonoBehaviour {
     public int CountResourcesOfType(int type) => collectedResources.Count(c => c.type == type);
 
     void Update() {
-        Interactable.aimed = GalloUtils.CollectionExtension.MaxElement(Interactable.AllThatDetects(colliderRef), e => Vector3.Dot((e.transform.position - transform.position).normalized, Camera.main.transform.forward));
-        if (Input.GetMouseButtonDown(0)) {
-            Interactable.TryInteractAimedWith(this);
+        if (isInputAllowed) {
+            Interactable.aimed = Interactable.AllThatDetects(colliderRef).MaxElement(e => Vector3.Dot((e.transform.position - transform.position).normalized, Camera.main.transform.forward));
+            if (Input.GetMouseButtonDown(0)) {
+                Interactable.TryInteractAimedWith(this);
+            }
         }
     }
 

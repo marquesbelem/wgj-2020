@@ -91,7 +91,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   pivot: {fileID: 1796881223805052200}
-  point: {fileID: 1796881222771217245}
+  pose: {fileID: 1796881222771217245}
+  rotationControlLimits: {x: 0, y: 0}
 --- !u!1 &1796881223737666574
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,10 +102,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1796881223737666561}
-  - component: {fileID: 1796881223737666563}
   - component: {fileID: 1796881223737666560}
+  - component: {fileID: 1211565509133677169}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,19 +125,6 @@ Transform:
   m_Father: {fileID: 1796881223069256467}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1796881223737666563
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796881223737666574}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.5, y: 2, z: 7.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1796881223737666560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +168,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!135 &1211565509133677169
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796881223737666574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1796881223805052201
 GameObject:
   m_ObjectHideFlags: 0
