@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneFinal : MonoBehaviour
-{
+public class SceneFinal : MonoBehaviour {
     public GameObject Canvas;
-    void Start()
-    {
+    void Start() {
         StartCoroutine(EnableCanvas());
     }
 
-    IEnumerator EnableCanvas()
-    {
+    IEnumerator EnableCanvas() {
         yield return new WaitForSeconds(16f);
         Canvas.SetActive(true);
         yield return new WaitForSeconds(113f);

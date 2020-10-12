@@ -9,31 +9,20 @@ using UnityEditor;
 public class SpawnObstacle : MonoBehaviour {
 
     public static List<SpawnObstacle> instanceList = new List<SpawnObstacle>();
-    private void Awake() {
-        instanceList.Add(this);
-    }
-    private void OnDestroy() {
-        instanceList.Remove(this);
-    }
+    private void Awake() => instanceList.Add(this);
+    private void OnDestroy() => instanceList.Remove(this);
+    public static bool AnyBlocksSpawn(List<string> possibilities, SphereRegion other, Vector3 hypotheticalUp) => instanceList.Exists(i => i.BlocksSpawn(possibilities, other, hypotheticalUp));
 
-    public float angularTreshold = 5f;
-    public float RadiansTreshold => Mathf.PI * 2f * angularTreshold / 360f;
+    public SphereRegion region;
+    public string identifier;
 
-    public List<string> identifiers;
+    public bool BlocksSpawn(List<string> possibilities, SphereRegion other, Vector3 hypotheticalUp) => MatchesIdentifiers(possibilities) && region != null && region.WouldOverlap(other, hypotheticalUp);
+    public bool MatchesIdentifiers(List<string> possibilities) => possibilities.Count == 0 || possibilities.Contains(identifier);
 
 #if UNITY_EDITOR
     public void OnDrawGizmosSelected() {
-        if (transform.position != Vector3.zero) {
-            float cos = Mathf.Cos(RadiansTreshold);
-            float sin = Mathf.Sin(RadiansTreshold);
-            float posMagnitude = transform.position.magnitude;
-            Vector3 posNormalized = transform.position / posMagnitude;
-            Handles.color = Color.red;
-            Handles.DrawWireDisc(posNormalized * posMagnitude * cos, posNormalized, posMagnitude * sin);
-            Handles.DrawWireArc(Vector3.zero, Vector3.right, posNormalized, angularTreshold, posMagnitude);
-            Handles.DrawWireArc(Vector3.zero, -Vector3.right, posNormalized, angularTreshold, posMagnitude);
-            Handles.DrawWireArc(Vector3.zero, Vector3.forward, posNormalized, angularTreshold, posMagnitude);
-            Handles.DrawWireArc(Vector3.zero, -Vector3.forward, posNormalized, angularTreshold, posMagnitude);
+        if (region != null) {
+            region.DrawGizmos(Color.red);
         }
     }
 #endif

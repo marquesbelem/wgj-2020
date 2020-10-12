@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour {
 
@@ -25,6 +26,8 @@ public class CameraController : MonoBehaviour {
     public float heightOffsetRangeMax = 2f;
     public LayerMask raycastMask;
     public float offsetFromCollisionPoint = 0.75f;
+    public UnityEvent onTargetingShot;
+    public UnityEvent onTargetingPlayer;
 
     private Vector3 targetShotPivotPoint = Vector3.zero;
     private float targetShotDistance = 0f;
@@ -34,6 +37,7 @@ public class CameraController : MonoBehaviour {
     private float curDistanceFromPivot = 0f;
     private Quaternion curRotation = Quaternion.identity;
     private Vector2 targetRotationArroundPlayer = Vector2.zero;
+    private Vector2 targetRotationArroundShot = Vector2.zero;
     private float playerToShotTransition = 0f;
     private float playerToShotTransitionSpeed = 0f;
 
@@ -49,19 +53,26 @@ public class CameraController : MonoBehaviour {
         Quaternion targetPlayerRotation = playerTransform.rotation * Quaternion.Euler(targetRotationArroundPlayer);
         float targetPlayerDistance = angleZoomRangeMin;
 
+        Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x);
         if (CameraShot.AnySelected) {
             playerToShotTransition = Mathf.SmoothDamp(playerToShotTransition, 1f, ref playerToShotTransitionSpeed, lerpSmoothTime);
             CameraShot curShot = CameraShot.FirstHighestPrioritySelected;
+            targetRotationArroundShot += rotationInput * SettingsManager.cameraSensibility;
+            targetRotationArroundShot.x = Mathf.Clamp(targetRotationArroundShot.x, -curShot.rotationControlLimits.y / 2f, curShot.rotationControlLimits.y / 2f);
+            targetRotationArroundShot.y = Mathf.Clamp(targetRotationArroundShot.y, -curShot.rotationControlLimits.x / 2f, curShot.rotationControlLimits.x / 2f);
             targetShotPivotPoint = curShot.PivotPoint;
-            targetShotRotation = curShot.Rotation;
+            targetShotRotation = curShot.Rotation * Quaternion.Euler(targetRotationArroundShot);
             targetShotDistance = curShot.Distance;
+            onTargetingShot.Invoke();
         }
         else {
+            Cursor.lockState = CursorLockMode.Locked;
             playerToShotTransition = Mathf.SmoothDamp(playerToShotTransition, 0f, ref playerToShotTransitionSpeed, lerpSmoothTime);
-            Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x);
             targetRotationArroundPlayer += rotationInput * SettingsManager.cameraSensibility;
             targetRotationArroundPlayer.x = Mathf.Clamp(targetRotationArroundPlayer.x, verticalRotationRangeMin, verticalRotationRangeMax);
             targetPlayerRotation = playerTransform.rotation * Quaternion.Euler(targetRotationArroundPlayer);
+            targetRotationArroundShot = Vector2.zero;
+            onTargetingPlayer.Invoke();
         }
 
 

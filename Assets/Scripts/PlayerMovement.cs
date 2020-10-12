@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -16,10 +17,6 @@ public class PlayerMovement : MonoBehaviour {
     public string walkAnimationName = "Walking";
     public float walkAnimationTreshold = 0.1f;
 
-    public AudioSource walkSound;
-    public float walkSoundDelay = 0.8f;
-
-    private float walkSoundTimer = 0f;
     private float walkAnimationSqrTreshold;
     private Quaternion movementLocalRot;
     private Vector3 movInputDir;
@@ -37,17 +34,8 @@ public class PlayerMovement : MonoBehaviour {
             movInputDir = movementLocalRot * (new Vector3(Input.GetAxis(walkRightInputName), 0f, Input.GetAxis(walkForwardInputName))).normalized;
             bool inputPassesTreshold = movInputDir.sqrMagnitude >= walkAnimationSqrTreshold;
             bool velocityPassesTreshold = rigidbodyRef.velocity.sqrMagnitude >= walkAnimationSqrTreshold;
-            if (velocityPassesTreshold) {
-                if (walkSound != null) {
-                    walkSoundTimer += Time.deltaTime;
-                    if (walkSoundTimer >= walkSoundDelay) {
-                        walkSoundTimer -= walkSoundDelay;
-                        walkSound.Play();
-                    }
-                }
-                if (inputPassesTreshold) {
-                    rotatingTransform.rotation = Quaternion.LookRotation(movInputDir.normalized, transform.up);
-                }
+            if (velocityPassesTreshold && inputPassesTreshold) {
+                rotatingTransform.rotation = Quaternion.LookRotation(movInputDir.normalized, transform.up);
             }
             animatorRef.SetBool(walkAnimationName, velocityPassesTreshold);
             rigidbodyRef.velocity = movInputDir * movementSpeed;
