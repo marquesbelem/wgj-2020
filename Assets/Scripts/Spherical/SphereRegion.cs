@@ -6,17 +6,19 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[RequireComponent(typeof(SphereCoordinates))]
 public class SphereRegion : MonoBehaviour {
 
     public float angularTreshold = 5f;
     public float RadiansTreshold => Mathf.Deg2Rad * angularTreshold;
 
-    private SphereCoordinates sphereCoordinatesRef;
+    public SphereCoordinates sphereCoordinatesRef;
     public SphereCoordinates SphereCoordinatesRef {
         get {
             if (sphereCoordinatesRef == null) {
                 sphereCoordinatesRef = GetComponent<SphereCoordinates>();
+            }
+            if (sphereCoordinatesRef == null) {
+                sphereCoordinatesRef = GetComponentInParent<SphereCoordinates>();
             }
             return sphereCoordinatesRef;
         }
@@ -57,6 +59,10 @@ public class SphereRegion : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    private void OnValidate() {
+        _ = SphereCoordinatesRef;
     }
 
 

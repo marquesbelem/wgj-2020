@@ -20,10 +20,7 @@ public class PoseSaver : MonoBehaviour {
         hasAlreadySaved = true;
     }
     public void LoadSavedPose() {
-        if (!hasAlreadySaved) {
-            SaveCurrentPose();
-        }
-        else {
+        if (hasAlreadySaved) {
             transform.position = savedPose.position;
             transform.rotation = savedPose.rotation;
         }

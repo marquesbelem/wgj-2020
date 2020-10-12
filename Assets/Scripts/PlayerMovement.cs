@@ -42,15 +42,4 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (movementLocalRot * Vector3.right * 10f));
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + (movementLocalRot * Vector3.up * 10f));
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + (movementLocalRot * Vector3.forward * 10f));
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(transform.position, transform.position + (movInputDir * 10f));
-    }
-
 }
