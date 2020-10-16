@@ -186,7 +186,12 @@ PrefabInstance:
     - target: {fileID: 5404023329393595813, guid: 7f88fad2ae78bf345ba34815a2ba2d50,
         type: 3}
       propertyPath: m_Name
-      value: Tiny Tree Group Variant
+      value: Tiny Blue Tree Group
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196786575846855489, guid: 7f88fad2ae78bf345ba34815a2ba2d50,
+        type: 3}
+      propertyPath: angularTreshold
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8296564509871606608, guid: 7f88fad2ae78bf345ba34815a2ba2d50,
         type: 3}

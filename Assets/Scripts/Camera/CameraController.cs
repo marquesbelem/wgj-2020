@@ -6,118 +6,111 @@ using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour {
 
-    public Transform playerTransform;
-    public bool useInitialParams = false;
-    public Vector3 initialPivotPoint = Vector3.zero;
-    public Vector2 initialRotation = new Vector2(35f, 0f);
-    public float initialDistanceFromPivot = 15f;
-    public float initialHeightOffset = 1.5f;
-    public string horizontalRotationInputName = "";
-    public string verticalRotationInputName = "";
+    public static float sensibility = 1f;
+    public static bool invertYAxis = false;
+
+    public string horizontalRotationInputName = "Mouse X";
+    public string verticalRotationInputName = "Mouse Y";
+    public string actionInputName = ""; //Optional zoom/offset input
+
     public Vector2 rotationInputSpeed = Vector2.one;
-    public string zoomInputName = "";
-    public float inputZoomMultiplier = 0.5f;
-    public float lerpSmoothTime = 1f;
-    public float verticalRotationRangeMin = 0f;
-    public float verticalRotationRangeMax = 70f;
-    public float angleZoomRangeMin = 10f;
-    public float angleZoomRangeMax = 20f;
-    public float heightOffsetRangeMin = 1f;
-    public float heightOffsetRangeMax = 2f;
-    public LayerMask raycastMask;
-    public float offsetFromCollisionPoint = 0.75f;
-    public UnityEvent onTargetingShot;
-    public UnityEvent onTargetingPlayer;
+    public float transitionSmoothTime = 0.5f;
+    public float inputSmoothTime = 0.1f;
+    public UnityEvent onTargetingNewShot;
+    public UnityEvent onTargetingNoShot;
 
-    private Vector3 targetShotPivotPoint = Vector3.zero;
-    private float targetShotDistance = 0f;
-    private Quaternion targetShotRotation = Quaternion.identity;
-    private Vector3 curPivotPoint = Vector3.zero;
-    private float curHeightOffset = 0f;
-    private float curDistanceFromPivot = 0f;
+
+    private Vector3 curPivot = Vector3.zero;
     private Quaternion curRotation = Quaternion.identity;
-    private Vector2 targetRotationArroundPlayer = Vector2.zero;
-    private Vector2 targetRotationArroundShot = Vector2.zero;
-    private float playerToShotTransition = 0f;
-    private float playerToShotTransitionSpeed = 0f;
+    private float curDistance = 0f;
+    private Vector2 curControlledRotation = Vector2.zero;
+    private CameraShot nextCameraShot = null;
 
-    public float ZoomInput => string.IsNullOrEmpty(zoomInputName) ? 0 : Input.GetAxis(zoomInputName);
+    private Vector3 lastPivot = Vector3.zero;
+    private Quaternion lastRotation = Quaternion.identity;
+    private float lastDistance = 0f;
+    private Vector2 lastControlledRotation = Vector2.zero;
+    private CameraShot lastCameraShot = null;
+
+    private float transitionPoint = 0f;
+    private float transitionSpeed = 0f;
+    private Vector2 rotationInputSmoothPoint = Vector2.zero;
+    private Vector2 rotationInputSmoothSpeed = Vector2.zero;
+
+    public float ActionInput => string.IsNullOrEmpty(actionInputName) ? 0 : Input.GetAxis(actionInputName);
+    private float TresholdToAcceptNextTarget => transitionSmoothTime / 10f;
 
     public void Start() {
         Init();
-        Cursor.lockState = CursorLockMode.Locked;
     }
-    public void FixedUpdate() {
-        float targetPlayerHeightOffset = Mathf.Lerp(heightOffsetRangeMin, heightOffsetRangeMax, 1f - ZoomInput);
-        Vector3 targetPlayerPivotPoint = playerTransform.position;
-        Quaternion targetPlayerRotation = playerTransform.rotation * Quaternion.Euler(targetRotationArroundPlayer);
-        float targetPlayerDistance = angleZoomRangeMin;
-
-        Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x);
-        if (CameraShot.AnySelected) {
-            playerToShotTransition = Mathf.SmoothDamp(playerToShotTransition, 1f, ref playerToShotTransitionSpeed, lerpSmoothTime);
-            CameraShot curShot = CameraShot.FirstHighestPrioritySelected;
-            targetRotationArroundShot += rotationInput * SettingsManager.cameraSensibility;
-            targetRotationArroundShot.x = Mathf.Clamp(targetRotationArroundShot.x, -curShot.rotationControlLimits.y / 2f, curShot.rotationControlLimits.y / 2f);
-            targetRotationArroundShot.y = Mathf.Clamp(targetRotationArroundShot.y, -curShot.rotationControlLimits.x / 2f, curShot.rotationControlLimits.x / 2f);
-            targetShotPivotPoint = curShot.PivotPoint;
-            targetShotRotation = curShot.Rotation * Quaternion.Euler(targetRotationArroundShot);
-            targetShotDistance = curShot.Distance;
-            onTargetingShot.Invoke();
-        }
-        else {
-            Cursor.lockState = CursorLockMode.Locked;
-            playerToShotTransition = Mathf.SmoothDamp(playerToShotTransition, 0f, ref playerToShotTransitionSpeed, lerpSmoothTime);
-            targetRotationArroundPlayer += rotationInput * SettingsManager.cameraSensibility;
-            targetRotationArroundPlayer.x = Mathf.Clamp(targetRotationArroundPlayer.x, verticalRotationRangeMin, verticalRotationRangeMax);
-            targetPlayerRotation = playerTransform.rotation * Quaternion.Euler(targetRotationArroundPlayer);
-            targetRotationArroundShot = Vector2.zero;
-            onTargetingPlayer.Invoke();
-        }
-
-
-        curPivotPoint = Vector3.Lerp(targetPlayerPivotPoint, targetShotPivotPoint, playerToShotTransition);
-        curHeightOffset = Mathf.Lerp(targetPlayerHeightOffset, 0f, playerToShotTransition);
-        curRotation = Quaternion.Lerp(targetPlayerRotation, targetShotRotation, playerToShotTransition);
-
-        if (!CameraShot.AnySelected) {
-            targetPlayerDistance = Mathf.Lerp(1f, inputZoomMultiplier, ZoomInput) * Mathf.Lerp(angleZoomRangeMin, angleZoomRangeMax, Mathf.InverseLerp(verticalRotationRangeMin, verticalRotationRangeMax, targetPlayerRotation.x));
-            Vector3 origin = targetPlayerPivotPoint + Vector3.up * targetPlayerHeightOffset;
-            if (Physics.Raycast(origin, targetPlayerRotation * -Vector3.forward, out RaycastHit hit, targetPlayerDistance, raycastMask, QueryTriggerInteraction.Ignore)) {
-                targetPlayerDistance = (hit.point - origin).magnitude - offsetFromCollisionPoint;
+    public void Update() {
+        if (transitionPoint > 1f - TresholdToAcceptNextTarget) {
+            CameraShot selectedShot = CameraShot.FirstHighestPrioritySelected;
+            if (nextCameraShot != selectedShot) {
+                lastCameraShot = nextCameraShot;
+                lastPivot = curPivot;
+                lastRotation = curRotation;
+                lastDistance = curDistance;
+                lastControlledRotation = curControlledRotation;
+                nextCameraShot = selectedShot;
+                transitionPoint = 0f;
+                curControlledRotation = Vector2.zero;
+                rotationInputSmoothPoint = Vector2.zero;
+                rotationInputSmoothSpeed = Vector2.zero;
+                if (lastCameraShot != null) {
+                    lastCameraShot.onEndTargeted.Invoke();
+                }
+                if (nextCameraShot != null) {
+                    onTargetingNewShot.Invoke();
+                    nextCameraShot.onBeginTargeted.Invoke();
+                }
+                else {
+                    onTargetingNoShot.Invoke();
+                }
             }
         }
-        curDistanceFromPivot = Mathf.Lerp(targetPlayerDistance, targetShotDistance, playerToShotTransition);
 
+        Vector3 nextPivot = curPivot;
+        Quaternion nextRotation = curRotation;
+        float nextDistance = curDistance;
+        if (nextCameraShot != null) {
+            Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x);
+            if (invertYAxis)  rotationInput.y *= -1f;
+            rotationInputSmoothPoint = Vector2.SmoothDamp(rotationInputSmoothPoint, rotationInput, ref rotationInputSmoothSpeed, inputSmoothTime);
+            curControlledRotation += rotationInputSmoothPoint * sensibility;
+            nextCameraShot.ClampControlledRotation(ref curControlledRotation);
+            nextPivot = nextCameraShot.GetCurrentPivot(ActionInput);
+            nextRotation = nextCameraShot.GetCurrentRotation(curControlledRotation);
+            nextDistance = nextCameraShot.GetCurrentDistance(ActionInput, curControlledRotation);
+        }
+        if (lastCameraShot != null) {
+            lastPivot = lastCameraShot.GetCurrentPivot(ActionInput);
+            lastRotation = lastCameraShot.GetCurrentRotation(lastControlledRotation);
+            lastDistance = lastCameraShot.GetCurrentDistance(ActionInput, lastControlledRotation);
+        }
+        transitionPoint = Mathf.SmoothDamp(transitionPoint, 1f, ref transitionSpeed, transitionSmoothTime);
+        curPivot = Vector3.Lerp(lastPivot, nextPivot, transitionPoint);
+        curRotation = Quaternion.Lerp(lastRotation, nextRotation, transitionPoint);
+        curDistance = Mathf.Lerp(lastDistance, nextDistance, transitionPoint);
         ApplyTransform();
     }
-        
+    
     public void Init() {
-        if (useInitialParams) {
-            TeleportTo(initialPivotPoint, Quaternion.Euler(initialRotation), initialDistanceFromPivot, initialHeightOffset);
-        }
-        else {
-            TeleportToPlayer();
-        }
+        curPivot = transform.position;
+        curRotation = transform.rotation;
+        lastPivot = curPivot;
+        lastRotation = curRotation;
+        transitionPoint = 1f;
     }
-    public void TeleportToPlayer() {
-        float newDistFromPivot = Mathf.Lerp(angleZoomRangeMin, angleZoomRangeMax, Mathf.InverseLerp(verticalRotationRangeMin, verticalRotationRangeMax, curRotation.x));
-        Vector3 origin = playerTransform.position + Vector3.up * heightOffsetRangeMin;
-        if (Physics.Raycast(origin, -playerTransform.forward, out RaycastHit hit, newDistFromPivot, raycastMask)) {
-            newDistFromPivot = (hit.point - origin).magnitude - offsetFromCollisionPoint;
-        }
-        TeleportTo(playerTransform.position, playerTransform.rotation, newDistFromPivot, heightOffsetRangeMin);
-    }
-    public void TeleportTo(Vector3 newPivotPoint, Quaternion newRotation, float newDistFromPivot, float newHeightOffset) {
-        curPivotPoint = newPivotPoint;
+    public void TeleportTo(Vector3 newPivotPoint, Quaternion newRotation, float newDistFromPivot) {
+        curPivot = newPivotPoint;
         curRotation = newRotation;
-        curDistanceFromPivot = newDistFromPivot;
-        curHeightOffset = newHeightOffset;
+        curDistance = newDistFromPivot;
         ApplyTransform();
     }
 
     private void ApplyTransform() {
-        transform.position = curPivotPoint + (curRotation * Vector3.up * curHeightOffset) - (curRotation * Vector3.forward * curDistanceFromPivot);
+        transform.position = curPivot - (curRotation * Vector3.forward * curDistance);
         transform.rotation = curRotation;
     }
 

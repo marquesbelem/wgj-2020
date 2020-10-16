@@ -18,10 +18,6 @@ public class DayTimeManager : MonoBehaviour {
     public AudioSource loopSolar;
     public AudioSource loopNight;
 
-    public CameraController cameraController;
-    public Transform solarCharacter;
-    public Transform nightCharacter;
-
     public List<GameObject> activeAtNight;
     public List<GameObject> activeAtSolar;
 
@@ -55,10 +51,7 @@ public class DayTimeManager : MonoBehaviour {
                 loopNight.Stop();
                 introSolar.Play();
                 StopAllCoroutines();
-                //CancelInvoke("PlaySoundLoopNight");
                 StartCoroutine(PlaySoundLoopSolar());
-                //Invoke("PlaySoundLoopSolar", introSolar.clip.length);
-                cameraController.playerTransform = solarCharacter;
                 break;
             case DayTime.Night:
                 activeAtSolar.ForEach(o => o.SetActive(false));
@@ -68,10 +61,7 @@ public class DayTimeManager : MonoBehaviour {
                 loopSolar.Stop();
                 introNight.Play();
                 StopAllCoroutines();
-                //CancelInvoke("PlaySoundLoopSolar");
                 StartCoroutine(PlaySoundLoopNight());
-                //Invoke("PlaySoundLoopNight", introNight.clip.length);
-                cameraController.playerTransform = nightCharacter;
                 break;
             case DayTime.Twilight:
                 RenderSettings.skybox = skyboxTwilight;

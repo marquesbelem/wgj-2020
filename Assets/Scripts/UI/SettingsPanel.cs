@@ -21,7 +21,7 @@ public class SettingsPanel : MonoBehaviour {
         sfxVolumeSlider.value = SettingsManager.sfxVolume;
         sfxVolumeSlider.onValueChanged.AddListener(SetNewSFXVolume);
 
-        cameraSensibilitySlider.value = SettingsManager.cameraSensibility;
+        cameraSensibilitySlider.value = SettingsManager.CameraSensibility;
         cameraSensibilitySlider.onValueChanged.AddListener(SetNewCameraSensibility);
 
         languageDropdown.options = MultiLanguageManager.loadedLanguages.ConvertAll(l => new Dropdown.OptionData(l.languageID));
@@ -50,7 +50,7 @@ public class SettingsPanel : MonoBehaviour {
         SettingsManager.ApplyVolumes();
     }
     private void SetNewCameraSensibility(float value) {
-        SettingsManager.cameraSensibility = value;
+        SettingsManager.CameraSensibility = value;
     }
     private void SetNewLanguageIndex(int value) {
         MultiLanguageManager.SelectedLanguageIndex = value;
