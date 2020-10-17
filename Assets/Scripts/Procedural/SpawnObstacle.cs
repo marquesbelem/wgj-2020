@@ -16,7 +16,7 @@ public class SpawnObstacle : MonoBehaviour {
     public SphereRegion region;
     public string identifier;
 
-    public bool BlocksSpawn(List<string> possibilities, SphereRegion other, Vector3 hypotheticalUp) => MatchesIdentifiers(possibilities) && region != null && region.WouldOverlap(other, hypotheticalUp);
+    public bool BlocksSpawn(List<string> possibilities, SphereRegion other, Vector3 hypotheticalUp) => MatchesIdentifiers(possibilities) && region.WouldOverlap(other, hypotheticalUp);
     public bool MatchesIdentifiers(List<string> possibilities) => possibilities.Count == 0 || possibilities.Contains(identifier);
 
 #if UNITY_EDITOR

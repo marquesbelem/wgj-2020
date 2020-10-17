@@ -416,7 +416,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3900741137677126476}
   - component: {fileID: 3096912955477180644}
-  - component: {fileID: 1938757116472034881}
   - component: {fileID: -9067218040287818367}
   m_Layer: 0
   m_Name: Puzzle Note Base
@@ -438,6 +437,7 @@ Transform:
   m_Children:
   - {fileID: 2560289929622788405}
   - {fileID: 3490486383965603897}
+  - {fileID: 7440632360674823931}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -493,21 +493,6 @@ MonoBehaviour:
           m_StringArgument: Tremble
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1938757116472034881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9131714924166358931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6fb83fb260c22b4daf1d00279b85fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angularTreshold: 7.5
-  identifiers:
-  - KeyObject
 --- !u!114 &-9067218040287818367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,3 +506,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 12.75
+--- !u!1001 &5009178790621777319
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3900741137677126476}
+    m_Modifications:
+    - target: {fileID: 449171180556563147, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle Region
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264493247008305306, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: sphereCoordinatesRef
+      value: 
+      objectReference: {fileID: -9067218040287818367}
+    - target: {fileID: 5565895037761762908, guid: a12e81dcb2ee1614dadf0934e531e53b,
+        type: 3}
+      propertyPath: identifier
+      value: KeyObject
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a12e81dcb2ee1614dadf0934e531e53b, type: 3}
+--- !u!4 &7440632360674823931 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2505762966224372572, guid: a12e81dcb2ee1614dadf0934e531e53b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5009178790621777319}
+  m_PrefabAsset: {fileID: 0}

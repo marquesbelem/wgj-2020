@@ -8,7 +8,10 @@ public class SettingsManager : MonoBehaviour {
     public static float masterVolume = 0f;
     public static float musicVolume = 0f;
     public static float sfxVolume = 0f;
-    public static float cameraSensibility = 1f;
+    public static float CameraSensibility {
+        get => CameraController.sensibility;
+        set => CameraController.sensibility = value;
+    }
     public static AudioMixer mixer;
     public static string masterVolumeParameterName;
     public static string musicVolumeParameterName;
@@ -35,13 +38,13 @@ public class SettingsManager : MonoBehaviour {
         masterVolume = PlayerPrefs.GetFloat(masterVolumeParameterName, masterVolume);
         musicVolume = PlayerPrefs.GetFloat(musicVolumeParameterName, musicVolume);
         sfxVolume = PlayerPrefs.GetFloat(sfxVolumeParameterName, sfxVolume);
-        cameraSensibility = PlayerPrefs.GetFloat("CameraSensibility", cameraSensibility);
+        CameraSensibility = PlayerPrefs.GetFloat("CameraSensibility", CameraSensibility);
     }
     public static void SaveValues() {
         PlayerPrefs.SetFloat(masterVolumeParameterName, masterVolume);
         PlayerPrefs.SetFloat(musicVolumeParameterName, musicVolume);
         PlayerPrefs.SetFloat(sfxVolumeParameterName, sfxVolume);
-        PlayerPrefs.SetFloat("CameraSensibility", cameraSensibility);
+        PlayerPrefs.SetFloat("CameraSensibility", CameraSensibility);
         PlayerPrefs.Save();
     }
     public static void ApplyVolumes() {

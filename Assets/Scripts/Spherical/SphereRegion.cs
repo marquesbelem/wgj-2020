@@ -6,57 +6,43 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[RequireComponent(typeof(SphereCoordinates))]
 public class SphereRegion : MonoBehaviour {
 
     public float angularTreshold = 5f;
     public float RadiansTreshold => Mathf.Deg2Rad * angularTreshold;
 
-    private SphereCoordinates sphereCoordinatesRef;
+    public SphereCoordinates sphereCoordinatesRef;
     public SphereCoordinates SphereCoordinatesRef {
         get {
             if (sphereCoordinatesRef == null) {
-                sphereCoordinatesRef = GetComponent<SphereCoordinates>();
+                sphereCoordinatesRef = GetComponentInParent<SphereCoordinates>();
             }
             return sphereCoordinatesRef;
         }
     }
 
     public bool Contains(Vector3 dir) {
-        SphereCoordinates sphereCoordinates = SphereCoordinatesRef;
-        if (sphereCoordinates != null) {
-            if (sphereCoordinates.radius <= 0f) {
-                return true;
-            }
-            return Vector3.Angle(transform.up, dir) <= angularTreshold;
+        if (SphereCoordinatesRef.radius <= 0f) {
+            return true;
         }
-        return false;
-    }
-    public bool Overlaps(SphereRegion other) {
-        if (other != null) {
-            SphereCoordinates coordinates = SphereCoordinatesRef;
-            SphereCoordinates otherCoordinates = other.SphereCoordinatesRef;
-            if (coordinates != null && otherCoordinates != null) {
-                if (coordinates.radius <= 0f || otherCoordinates.radius <= 0f) {
-                    return true;
-                }
-                return Vector3.Angle(transform.up, other.transform.up) <= angularTreshold + other.angularTreshold;
-            }
-        }
-        return false;
+        return Vector3.Angle(transform.up, dir) <= angularTreshold;
     }
     public bool WouldOverlap(SphereRegion other, Vector3 hypotheticalUp) {
-        if (other != null) {
-            SphereCoordinates coordinates = SphereCoordinatesRef;
-            SphereCoordinates otherCoordinates = other.SphereCoordinatesRef;
-            if (coordinates != null && otherCoordinates != null) {
-                if (coordinates.radius <= 0f || otherCoordinates.radius <= 0f) {
-                    return true;
-                }
-                return Vector3.Angle(transform.up, hypotheticalUp) <= angularTreshold + other.angularTreshold;
-            }
+        float angularBonus = 0f;
+        if (other == null) {
+            angularBonus = other.angularTreshold;
         }
-        return false;
+        else if (other.SphereCoordinatesRef.radius <= 0f) {
+            return true;
+        }
+        if (SphereCoordinatesRef.radius <= 0f) {
+            return true;
+        }
+        return Vector3.Angle(transform.up, hypotheticalUp) <= angularTreshold + angularBonus;
+    }
+
+    private void OnValidate() {
+        _ = SphereCoordinatesRef;
     }
 
 

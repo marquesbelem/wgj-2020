@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class MultiLanguageManager : MonoBehaviour {
 
-    public List<Language> languageAssets;
+    public List<LanguagePack> languageAssets;
 
     private static string selectedLanguageID = "";
     public static string SelectedLanguageID {
@@ -27,8 +27,12 @@ public class MultiLanguageManager : MonoBehaviour {
             selectedLanguageChanged.Invoke();
         }
     }
-    public static Language SelectedLanguage => loadedLanguages.Find(l => SelectedLanguageID == l.languageID);
-    public static List<Language> loadedLanguages = null;
+    public static LanguagePack SelectedLanguage => loadedLanguages.Find(l => SelectedLanguageID == l.languageID);
+    public static int SelectedLanguageIndex { 
+        get => loadedLanguages.FindIndex(l => SelectedLanguageID == l.languageID);
+        set => SelectedLanguageID = loadedLanguages[value].languageID;
+    }
+    public static List<LanguagePack> loadedLanguages = null;
     public static UnityAction selectedLanguageChanged;
 
     private void Start() {

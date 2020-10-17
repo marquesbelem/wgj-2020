@@ -16,7 +16,7 @@ public class MultiLanguageText : MonoBehaviour {
     }
 
     public void ApplyText() {
-        Language language = MultiLanguageManager.SelectedLanguage;
+        LanguagePack language = MultiLanguageManager.SelectedLanguage;
         if (language != null) {
             textRenderer.text = language[termIdentifier];
         }

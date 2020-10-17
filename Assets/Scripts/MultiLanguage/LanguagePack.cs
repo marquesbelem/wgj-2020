@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Language : ScriptableObject {
+[CreateAssetMenu]
+public class LanguagePack : ScriptableObject {
 
     public string languageID;
     [Serializable] public class Term {
