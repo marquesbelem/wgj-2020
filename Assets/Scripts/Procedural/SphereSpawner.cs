@@ -7,15 +7,14 @@ public class SphereSpawner : MonoBehaviour {
 
     public float radius = 1;
     public Transform parent;
+    public SphereRegion spawnRegion;
+    public float maxTimeRandomizing = 5f;
     [Serializable] public class Spawnable {
         public List<GameObject> prefabs;
         public int quantity;
     }
     public List<Spawnable> spawnables;
-    public SphereRegion spawnRegion;
-
     public List<string> obstacleIds;
-    public float maxTimeRandomizing = 5f;
 
     private float startTime;
     private float curTime;
@@ -28,16 +27,20 @@ public class SphereSpawner : MonoBehaviour {
             startTime = Time.realtimeSinceStartup;
             for (int i = 0; i < spawnable.quantity; i++) {
                 GameObject prefab = spawnable.prefabs.RandomElement();
-                SpawnObstacle prefabObstacle = prefab.GetComponent<SpawnObstacle>();
+                SpawnObstacle prefabObstacle = prefab.GetComponentInChildren<SpawnObstacle>();
                 SphereRegion prefabRegion = (prefabObstacle != null)? prefabObstacle.region : null;
                 Vector3 direction;
+                bool zeroDirection, outsideSpawnRegion, blockedBySomeObstacle;
                 bool IsStillOnTime() => (curTime - startTime) <= maxTimeRandomizing;
                 do {
                     direction = UnityEngine.Random.insideUnitSphere.normalized;
                     curTime = Time.realtimeSinceStartup;
-                } while ((direction == Vector3.zero || !spawnRegion.Contains(direction) || SpawnObstacle.AnyBlocksSpawn(obstacleIds, prefabRegion, direction)) && IsStillOnTime());
+                    zeroDirection = direction == Vector3.zero;
+                    outsideSpawnRegion = !spawnRegion.Contains(direction);
+                    blockedBySomeObstacle = SpawnObstacle.AnyBlocksSpawn(obstacleIds, prefabRegion, direction);
+                } while ((zeroDirection || outsideSpawnRegion || blockedBySomeObstacle) && IsStillOnTime());
                 if (!IsStillOnTime()) {
-                    Debug.Log("Timed out spawning " + prefab + " #" + (i+1));
+                    Debug.Log("Timed out spawning " + prefab + " #" + (i+1) + "." + (outsideSpawnRegion? " Outside spawn region.":"") + (blockedBySomeObstacle ? " Blocked by some obstacle." : ""));
                     break;
                 }
                 Transform newObj = Instantiate(prefab).transform;
