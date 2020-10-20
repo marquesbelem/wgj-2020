@@ -34,6 +34,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - FRESNEL: 0
+    - Vector1_E144C508: 0
     - _RimStrength: 0.001
     - _Smoothness: 1000
     m_Colors:

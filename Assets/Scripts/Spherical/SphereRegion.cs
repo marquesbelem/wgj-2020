@@ -29,12 +29,13 @@ public class SphereRegion : MonoBehaviour {
     }
     public bool WouldOverlap(SphereRegion other, Vector3 hypotheticalUp) {
         float angularBonus = 0f;
-        if (other == null) {
+        if (other != null) {
             angularBonus = other.angularTreshold;
-        }
-        else if (other.SphereCoordinatesRef.radius <= 0f) {
+			 if (other.SphereCoordinatesRef.radius <= 0f) {
             return true;
         }
+        }
+       
         if (SphereCoordinatesRef.radius <= 0f) {
             return true;
         }
