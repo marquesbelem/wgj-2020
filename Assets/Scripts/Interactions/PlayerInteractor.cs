@@ -32,12 +32,15 @@ public class PlayerInteractor : MonoBehaviour {
     public float squatAnimTime = 1f;
     public string dropAnimTrigger = "Drop";
     public float dropAnimTime = 1f;
-    public string collectedAllNewGoalText = "Deliver all resources to the goddess";
 
     private DeliverSpot curDeliverSpot;
     private List<Collectable> collectedResources = new List<Collectable>();
     public bool HasAnyResources => collectedResources.Count > 0;
     public int CountResourcesOfType(int type) => collectedResources.Count(c => c.type == type);
+    public bool IsInputAllowed {
+        get => isInputAllowed;
+        set => isInputAllowed = value;
+    }
 
     void Update() {
         if (isInputAllowed) {
@@ -51,7 +54,7 @@ public class PlayerInteractor : MonoBehaviour {
     public void BeginCollectResource(Collectable collectable) {
         collectedResources.Add(collectable);
         if (DeliverSpot.FirstEnabled.WouldCompleteWith(collectedResources)) {
-            GoalPanel.instance.ShowNewText(collectedAllNewGoalText);
+            DeliverSpot.FirstEnabled.onCollectedAll.Invoke();
         }
         if (collectSound != null) {
             collectSound.Play();

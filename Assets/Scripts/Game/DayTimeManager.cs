@@ -34,6 +34,7 @@ public class DayTimeManager : MonoBehaviour {
         else if (curDayTime == DayTime.Night) {
             curDayTime = DayTime.Solar;
         }
+        Debug.Log("Toggled to daytime " + curDayTime);
         UpdateDayTime();
     }
     public void SetTwilight() {

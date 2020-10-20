@@ -7,6 +7,7 @@ using UnityEngine;
 public class LanguagePack : ScriptableObject {
 
     public string languageID;
+    public Sprite flag;
     [Serializable] public class Term {
         public string identifier;
         public string value;

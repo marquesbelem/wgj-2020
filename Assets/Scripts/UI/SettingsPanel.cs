@@ -24,7 +24,7 @@ public class SettingsPanel : MonoBehaviour {
         cameraSensibilitySlider.value = SettingsManager.CameraSensibility;
         cameraSensibilitySlider.onValueChanged.AddListener(SetNewCameraSensibility);
 
-        languageDropdown.options = MultiLanguageManager.loadedLanguages.ConvertAll(l => new Dropdown.OptionData(l.languageID));
+        languageDropdown.options = MultiLanguageManager.loadedLanguages.ConvertAll(l => new Dropdown.OptionData(l.languageID, l.flag));
         languageDropdown.value = MultiLanguageManager.SelectedLanguageIndex;
         languageDropdown.onValueChanged.AddListener(SetNewLanguageIndex);
     }

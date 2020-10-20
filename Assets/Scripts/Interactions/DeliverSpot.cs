@@ -43,7 +43,8 @@ public class DeliverSpot : MonoBehaviour {
         public int quantity;
     }
     public List<WishedResource> wishedResources;
-    public UnityEvent onCompleted;
+    public UnityEvent onDeliveredAll;
+    public UnityEvent onCollectedAll;
 
     private List<Collectable> collected = new List<Collectable>();
 
@@ -59,7 +60,7 @@ public class DeliverSpot : MonoBehaviour {
         UpdateCollectedPositions();
         if (wishedResources.TrueForAll(w => collected.Count(c => c.type == w.type) >= w.quantity)) {
             Debug.Log("Deliver complete!");
-            onCompleted.Invoke();
+            onDeliveredAll.Invoke();
         }
     }
 

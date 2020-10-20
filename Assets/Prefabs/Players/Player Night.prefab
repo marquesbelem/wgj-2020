@@ -103,6 +103,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 580045917383068278, guid: 21c913d97cdfef1498124ee55c408e2d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 666990479823928824, guid: 21c913d97cdfef1498124ee55c408e2d,
         type: 3}
       propertyPath: onSolar.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -213,6 +218,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a5a7907253a371844b069344efe4b359, type: 2}
+    - target: {fileID: 4241777089947581783, guid: 21c913d97cdfef1498124ee55c408e2d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6131865951560056000, guid: 21c913d97cdfef1498124ee55c408e2d,
         type: 3}
       propertyPath: m_Center.y

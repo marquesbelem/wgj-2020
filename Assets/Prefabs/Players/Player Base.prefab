@@ -319,6 +319,7 @@ MonoBehaviour:
     y: 0
     width: 360
     height: 60
+  controlledRotationSpeedMultiplier: 1
   raycastMask:
     serializedVersion: 2
     m_Bits: 1
@@ -326,7 +327,10 @@ MonoBehaviour:
   offsetFromCollisionPoint: 0.75
   distMultiplyerOnActionInput: 1
   pivotLocalOffsetOnActionInput: {x: 0, y: 0, z: 0}
-  onBeingTargeted:
+  onBeginTargeted:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndTargeted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &225633545127618948

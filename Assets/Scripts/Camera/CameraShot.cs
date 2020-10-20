@@ -45,6 +45,7 @@ public class CameraShot : MonoBehaviour {
     public float distOnMinAngle = 10f;
     public float distOnMaxAngle = 10f;
     public Rect rotationControlLimits = Rect.zero;
+    public float controlledRotationSpeedMultiplier = 1f;
     public LayerMask raycastMask;
     public QueryTriggerInteraction queryTriggerInteraction;
     public float offsetFromCollisionPoint = 0.75f;

@@ -1418,16 +1418,14 @@ public static partial class CollectionExtension {
         Dictionary<T, int> lookUp = new Dictionary<T, int>(aListA.Count);
         // create index for the first list
         for (int i = 0; i < aListA.Count; i++) {
-            int count = 0;
-            if (!lookUp.TryGetValue(aListA[i], out count)) {
+            if (!lookUp.TryGetValue(aListA[i], out int count)) {
                 lookUp.Add(aListA[i], 1);
                 continue;
             }
             lookUp[aListA[i]] = count + 1;
         }
         for (int i = 0; i < aListB.Count; i++) {
-            int count = 0;
-            if (!lookUp.TryGetValue(aListB[i], out count)) {
+            if (!lookUp.TryGetValue(aListB[i], out int count)) {
                 // early exit as the current value in B doesn't exist in the lookUp (and not in ListA)
                 return false;
             }

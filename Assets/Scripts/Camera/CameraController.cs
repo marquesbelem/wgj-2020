@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour {
         Quaternion nextRotation = curRotation;
         float nextDistance = curDistance;
         if (nextCameraShot != null) {
-            Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x);
+            Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x) * nextCameraShot.controlledRotationSpeedMultiplier;
             if (invertYAxis)  rotationInput.y *= -1f;
             rotationInputSmoothPoint = Vector2.SmoothDamp(rotationInputSmoothPoint, rotationInput, ref rotationInputSmoothSpeed, inputSmoothTime);
             curControlledRotation += rotationInputSmoothPoint * sensibility;
@@ -89,7 +89,7 @@ public class CameraController : MonoBehaviour {
             lastDistance = lastCameraShot.GetCurrentDistance(ActionInput, lastControlledRotation);
         }
         transitionPoint = Mathf.SmoothDamp(transitionPoint, 1f, ref transitionSpeed, transitionSmoothTime);
-        curPivot = Vector3.Lerp(lastPivot, nextPivot, transitionPoint);
+        curPivot = Vector3.Slerp(lastPivot, nextPivot, transitionPoint);
         curRotation = Quaternion.Lerp(lastRotation, nextRotation, transitionPoint);
         curDistance = Mathf.Lerp(lastDistance, nextDistance, transitionPoint);
         ApplyTransform();

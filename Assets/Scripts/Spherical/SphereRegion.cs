@@ -29,12 +29,13 @@ public class SphereRegion : MonoBehaviour {
     }
     public bool WouldOverlap(SphereRegion other, Vector3 hypotheticalUp) {
         float angularBonus = 0f;
-        if (other == null) {
+        if (other != null) {
             angularBonus = other.angularTreshold;
+            if (other.SphereCoordinatesRef.radius <= 0f) {
+                return true;
+            }
         }
-        else if (other.SphereCoordinatesRef.radius <= 0f) {
-            return true;
-        }
+        else 
         if (SphereCoordinatesRef.radius <= 0f) {
             return true;
         }
@@ -57,10 +58,10 @@ public class SphereRegion : MonoBehaviour {
                 Vector3 posNormalized = transform.position / posMagnitude;
                 Handles.color = color;
                 Handles.DrawWireDisc(posNormalized * posMagnitude * cos, posNormalized, posMagnitude * sin);
-                Handles.DrawWireArc(Vector3.zero, Vector3.right, posNormalized, angularTreshold, posMagnitude);
-                Handles.DrawWireArc(Vector3.zero, -Vector3.right, posNormalized, angularTreshold, posMagnitude);
-                Handles.DrawWireArc(Vector3.zero, Vector3.forward, posNormalized, angularTreshold, posMagnitude);
-                Handles.DrawWireArc(Vector3.zero, -Vector3.forward, posNormalized, angularTreshold, posMagnitude);
+                Handles.DrawWireArc(Vector3.zero, transform.right, posNormalized, angularTreshold, posMagnitude);
+                Handles.DrawWireArc(Vector3.zero, -transform.right, posNormalized, angularTreshold, posMagnitude);
+                Handles.DrawWireArc(Vector3.zero, transform.forward, posNormalized, angularTreshold, posMagnitude);
+                Handles.DrawWireArc(Vector3.zero, -transform.forward, posNormalized, angularTreshold, posMagnitude);
             }
             else {
                 Gizmos.color = color;

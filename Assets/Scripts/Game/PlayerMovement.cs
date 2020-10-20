@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
             cameraForwardProjected.y = 0f;
             movementLocalRot = Quaternion.LookRotation(transform.TransformDirection(cameraForwardProjected.normalized), transform.up);
             movInputDir = movementLocalRot * (new Vector3(Input.GetAxis(walkRightInputName), 0f, Input.GetAxis(walkForwardInputName))).normalized;
-            bool inputPassesTreshold = movInputDir.sqrMagnitude >= walkAnimationSqrTreshold;
+            bool inputPassesTreshold = movInputDir.sqrMagnitude >= walkInputTreshold;
             bool velocityPassesTreshold = rigidbodyRef.velocity.sqrMagnitude >= walkAnimationSqrTreshold;
             if (velocityPassesTreshold && inputPassesTreshold) {
                 rotatingTransform.rotation = Quaternion.LookRotation(movInputDir.normalized, transform.up);
