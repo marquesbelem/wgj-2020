@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.UIElements;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class SphereRegion : MonoBehaviour {
+public class SphericalRegionCircle : MonoBehaviour, ISphericalRegion {
 
     public float angularTreshold = 5f;
     public float RadiansTreshold => Mathf.Deg2Rad * angularTreshold;
@@ -25,12 +26,16 @@ public class SphereRegion : MonoBehaviour {
         if (SphereCoordinatesRef.radius <= 0f) {
             return true;
         }
-        return Vector3.Angle(transform.up, dir) <= angularTreshold;
+        Vector3 hypotheticalPos = dir.normalized * SphereCoordinatesRef.radius;
+        Vector3 deltaDir = (SphereCoordinatesRef.transform.position - hypotheticalPos).normalized;
+        return Vector3.Angle(transform.up, dir) <= AngularExtension(deltaDir);
     }
-    public bool WouldOverlap(SphereRegion other, Vector3 hypotheticalUp) {
+    public bool WouldOverlap(ISphericalRegion other, Vector3 hypotheticalUp) {
         float angularBonus = 0f;
+        Vector3 hypotheticalPos = hypotheticalUp.normalized * SphereCoordinatesRef.radius;
+        Vector3 deltaDir = (SphereCoordinatesRef.transform.position - hypotheticalPos).normalized;
         if (other != null) {
-            angularBonus = other.angularTreshold;
+            angularBonus = other.AngularExtension(deltaDir);
             if (other.SphereCoordinatesRef.radius <= 0f) {
                 return true;
             }
@@ -39,7 +44,10 @@ public class SphereRegion : MonoBehaviour {
         if (SphereCoordinatesRef.radius <= 0f) {
             return true;
         }
-        return Vector3.Angle(transform.up, hypotheticalUp) <= angularTreshold + angularBonus;
+        return Vector3.Angle(transform.up, hypotheticalUp) <= AngularExtension(-deltaDir) + angularBonus;
+    }
+    public float AngularExtension(Vector3 dir) {
+        return angularTreshold;
     }
 
     private void OnValidate() {

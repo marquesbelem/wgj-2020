@@ -11,12 +11,12 @@ public class SpawnObstacle : MonoBehaviour {
     public static List<SpawnObstacle> instanceList = new List<SpawnObstacle>();
     private void Awake() => instanceList.Add(this);
     private void OnDestroy() => instanceList.Remove(this);
-    public static bool AnyBlocksSpawn(List<string> possibilities, SphereRegion other, Vector3 hypotheticalUp) => instanceList.Exists(i => i.BlocksSpawn(possibilities, other, hypotheticalUp));
+    public static bool AnyBlocksSpawn(List<string> possibilities, SphericalRegionCircle other, Vector3 hypotheticalUp) => instanceList.Exists(i => i.BlocksSpawn(possibilities, other, hypotheticalUp));
 
-    public SphereRegion region;
+    public SphericalRegionCircle region;
     public string identifier;
 
-    public bool BlocksSpawn(List<string> possibilities, SphereRegion other, Vector3 hypotheticalUp) => MatchesIdentifiers(possibilities) && region.WouldOverlap(other, hypotheticalUp);
+    public bool BlocksSpawn(List<string> possibilities, SphericalRegionCircle other, Vector3 hypotheticalUp) => MatchesIdentifiers(possibilities) && region.WouldOverlap(other, hypotheticalUp);
     public bool MatchesIdentifiers(List<string> possibilities) => possibilities.Count == 0 || possibilities.Contains(identifier);
 
 #if UNITY_EDITOR

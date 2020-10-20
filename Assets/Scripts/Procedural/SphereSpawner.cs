@@ -7,7 +7,7 @@ public class SphereSpawner : MonoBehaviour {
 
     public float radius = 1;
     public Transform parent;
-    public SphereRegion spawnRegion;
+    public SphericalRegionCircle spawnRegion;
     public float maxTimeRandomizing = 5f;
     [Serializable] public class Spawnable {
         public List<GameObject> prefabs;
@@ -28,7 +28,7 @@ public class SphereSpawner : MonoBehaviour {
             for (int i = 0; i < spawnable.quantity; i++) {
                 GameObject prefab = spawnable.prefabs.RandomElement();
                 SpawnObstacle prefabObstacle = prefab.GetComponentInChildren<SpawnObstacle>();
-                SphereRegion prefabRegion = (prefabObstacle != null)? prefabObstacle.region : null;
+                SphericalRegionCircle prefabRegion = (prefabObstacle != null)? prefabObstacle.region : null;
                 Vector3 direction;
                 bool zeroDirection, outsideSpawnRegion, blockedBySomeObstacle;
                 bool IsStillOnTime() => (curTime - startTime) <= maxTimeRandomizing;

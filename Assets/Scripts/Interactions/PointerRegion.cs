@@ -23,7 +23,7 @@ public class PointerRegion : MonoBehaviour {
     public static PointerRegion RegionBeingPointed => instanceList.Find(i => i.IsPointerOver);
     public static Vector3 InputDirection => Camera.main.ScreenPointToRay(Input.mousePosition).direction;
 
-    public SphereRegion region;
+    public SphericalRegionCircle region;
     public UnityEvent onIdle;
     public UnityEvent onHover;
     public UnityEvent onClicked;
