@@ -95,7 +95,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d851e4851307f44eb21589113d2f985, type: 2}
+      objectReference: {fileID: 2100000, guid: 83710e1a978005645a4fd917a684ada3, type: 2}
     - target: {fileID: -5754084199372789682, guid: 9c902f266960f244ab2f5a3ec11abdfc,
         type: 3}
       propertyPath: m_Mesh
@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 5404023329393595813, guid: 7f88fad2ae78bf345ba34815a2ba2d50,
         type: 3}
       propertyPath: m_Name
-      value: Medium Tree Variant
+      value: Medium Blue Tree
       objectReference: {fileID: 0}
     - target: {fileID: 8296564509871606608, guid: 7f88fad2ae78bf345ba34815a2ba2d50,
         type: 3}
