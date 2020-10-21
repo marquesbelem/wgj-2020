@@ -11,11 +11,11 @@ public class SphericalRegionCircularCurve : MonoBehaviour, ISphericalRegion {
 
     public AnimationCurve angularExtensionCurve;
 
-    public SphereCoordinates sphereCoordinatesRef;
-    public SphereCoordinates SphereCoordinatesRef {
+    public SphericalCoordinates sphereCoordinatesRef;
+    public SphericalCoordinates SphereCoordinatesRef {
         get {
             if (sphereCoordinatesRef == null) {
-                sphereCoordinatesRef = GetComponentInParent<SphereCoordinates>();
+                sphereCoordinatesRef = GetComponentInParent<SphericalCoordinates>();
             }
             return sphereCoordinatesRef;
         }
@@ -64,7 +64,7 @@ public class SphericalRegionCircularCurve : MonoBehaviour, ISphericalRegion {
 
 #if UNITY_EDITOR
     public void DrawGizmos(Color color) {
-        SphereCoordinates sphereCoordinates = SphereCoordinatesRef;
+        SphericalCoordinates sphereCoordinates = SphereCoordinatesRef;
         if (sphereCoordinates != null) {
             if (sphereCoordinates.radius > 0f) {
                 int vertexCount = angularExtensionCurve.length * 4;

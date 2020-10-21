@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
-public class SphereCoordinates : MonoBehaviour {
+public class SphericalCoordinates : MonoBehaviour {
 
     public float radius = 1f;
 

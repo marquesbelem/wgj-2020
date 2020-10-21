@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class GoalGraph : MonoBehaviour {
 
-    public SphereLine linePrefab;
+    public SphericalLine linePrefab;
     public List<GameObject> nodes;
     [Serializable] public class Connection : object {
         public int id1;
@@ -33,7 +33,7 @@ public class GoalGraph : MonoBehaviour {
     public UnityEvent onCompletion;
     
     private readonly List<Connection> connections = new List<Connection>();
-    private readonly List<SphereLine> instantiatedLines = new List<SphereLine>();
+    private readonly List<SphericalLine> instantiatedLines = new List<SphericalLine>();
 
     private void OnEnable() => PointerRegionManager.onDragFromTo.AddListener(ProcessDragEvent);
     private void OnDisable() => PointerRegionManager.onDragFromTo.RemoveListener(ProcessDragEvent);
@@ -52,7 +52,7 @@ public class GoalGraph : MonoBehaviour {
             }
             else {
                 connections.Add(newConnection);
-                SphereLine newLine = Instantiate(linePrefab);
+                SphericalLine newLine = Instantiate(linePrefab);
                 newLine.start = start.region.SphereCoordinatesRef;
                 newLine.finish = end.region.SphereCoordinatesRef;
                 instantiatedLines.Add(newLine);

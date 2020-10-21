@@ -12,11 +12,11 @@ public class SphericalRegionCircle : MonoBehaviour, ISphericalRegion {
     public float angularTreshold = 5f;
     public float RadiansTreshold => Mathf.Deg2Rad * angularTreshold;
 
-    public SphereCoordinates sphereCoordinatesRef;
-    public SphereCoordinates SphereCoordinatesRef {
+    public SphericalCoordinates sphereCoordinatesRef;
+    public SphericalCoordinates SphereCoordinatesRef {
         get {
             if (sphereCoordinatesRef == null) {
-                sphereCoordinatesRef = GetComponentInParent<SphereCoordinates>();
+                sphereCoordinatesRef = GetComponentInParent<SphericalCoordinates>();
             }
             return sphereCoordinatesRef;
         }
@@ -57,7 +57,7 @@ public class SphericalRegionCircle : MonoBehaviour, ISphericalRegion {
 
 #if UNITY_EDITOR
     public void DrawGizmos(Color color) {
-        SphereCoordinates sphereCoordinates = SphereCoordinatesRef;
+        SphericalCoordinates sphereCoordinates = SphereCoordinatesRef;
         if (sphereCoordinates != null) {
             if (sphereCoordinates.radius > 0f) {
                 float cos = Mathf.Cos(RadiansTreshold);

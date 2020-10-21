@@ -17,8 +17,8 @@ public class InputGraphConnection : MonoBehaviour {
 
     public static Vector3 InputDirection => Camera.main.ScreenPointToRay(Input.mousePosition).direction;
 
-    public SphereLine line;
-    public SphereCoordinates lineFinishPoint;
+    public SphericalLine line;
+    public SphericalCoordinates lineFinishPoint;
 
     private void Update() {
         UpdateGraphics();

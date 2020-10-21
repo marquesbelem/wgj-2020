@@ -9,9 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2569915294050784890}
-  - component: {fileID: 2569915294050784891}
-  - component: {fileID: 2569915294050784836}
-  - component: {fileID: 2569915294050784837}
+  - component: {fileID: 1180253715049516457}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: SolarCrystal
@@ -27,73 +25,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2569915294050784838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.74, y: 13.196, z: -3.19}
-  m_LocalScale: {x: 0.5359, y: 0.31255, z: 0.42989}
+  m_LocalPosition: {x: 0, y: 13, z: 0}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_Children:
   - {fileID: 6270274793490618449}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2569915294050784891
-MeshFilter:
+--- !u!95 &1180253715049516457
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2569915294050784838}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2569915294050784836
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569915294050784838}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!65 &2569915294050784837
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2569915294050784838}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ccafb69623645849ae818771d7bd9f4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &6880292536725011896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -172,17 +129,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fbb91e0f0809361488dd5400754a8539,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 78.714005
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fbb91e0f0809361488dd5400754a8539,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 78.714005
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fbb91e0f0809361488dd5400754a8539,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 78.714005
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: fbb91e0f0809361488dd5400754a8539,
         type: 3}
@@ -198,6 +155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: SolarCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fbb91e0f0809361488dd5400754a8539,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb91e0f0809361488dd5400754a8539, type: 3}

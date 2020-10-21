@@ -11,10 +11,12 @@ public class LevelManager : MonoBehaviour {
         instance = this;
     }
 
+    public CameraShot templeShot;
     [Serializable] public class Level {
         public List<Puzzle> puzzles;
     }
     public List<Level> levels;
+    public List<GameObject> cristalsToActivate;
     public UnityEvent onEnteredAny;
     public UnityEvent onCompletedAll;
 
@@ -22,7 +24,7 @@ public class LevelManager : MonoBehaviour {
     private int puzzleIndex = 0;
 
     private void Start() {
-        InvokeEvent();
+        StartNext();
     }
 
     public void CurPuzzleSolved() {
@@ -32,7 +34,7 @@ public class LevelManager : MonoBehaviour {
                 WinCurrentLevel();
             }
             else {
-                InvokeEvent();
+                StartNext();
             }
         }
     }
@@ -40,12 +42,21 @@ public class LevelManager : MonoBehaviour {
         if (levelIndex < levels.Count) {
             puzzleIndex = 0;
             levelIndex++;
-            InvokeEvent();
+            BeginWin();
         }
     }
-    public void InvokeEvent() {
+    private void BeginWin() {
+        templeShot.enabled = true;
+        levels.ForEach(l => l.puzzles.ForEach(p => p.Active = false));
+        Invoke("ActivateCristal", 1f);
+        Invoke("StartNext", 2f);
+    }
+    private void ActivateCristal() {
+        cristalsToActivate[levelIndex - 1].SetActive(true);
+    }
+    private void StartNext() {
+        templeShot.enabled = false;
         if (levelIndex < levels.Count) {
-            levels.ForEach(l => l.puzzles.ForEach(p => p.Active = false));
             levels[levelIndex].puzzles[puzzleIndex].Begin();
             onEnteredAny.Invoke();
         }

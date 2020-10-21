@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
-public class SphereLine : MonoBehaviour {
+public class SphericalLine : MonoBehaviour {
 
-    public SphereCoordinates start;
-    public SphereCoordinates finish;
+    public SphericalCoordinates start;
+    public SphericalCoordinates finish;
     public LineRenderer lineRenderer;
     public float segmentMaxAngle = 2f;
     public float radiusOffset = 1f;
