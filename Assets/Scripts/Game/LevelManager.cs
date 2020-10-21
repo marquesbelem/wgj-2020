@@ -48,14 +48,15 @@ public class LevelManager : MonoBehaviour {
     private void BeginWin() {
         templeShot.enabled = true;
         levels.ForEach(l => l.puzzles.ForEach(p => p.Active = false));
-        Invoke("ActivateCristal", 1f);
-        Invoke("StartNext", 2f);
+        Invoke("ActivateCristal", 2f);
+        Invoke("StartNext", 3f);
     }
     private void ActivateCristal() {
         cristalsToActivate[levelIndex - 1].SetActive(true);
     }
     private void StartNext() {
         templeShot.enabled = false;
+        levels.ForEach(l => l.puzzles.ForEach(p => p.Active = false));
         if (levelIndex < levels.Count) {
             levels[levelIndex].puzzles[puzzleIndex].Begin();
             onEnteredAny.Invoke();
