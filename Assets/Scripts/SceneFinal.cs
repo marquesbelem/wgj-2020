@@ -12,7 +12,7 @@ public class SceneFinal : MonoBehaviour {
     IEnumerator EnableCanvas() {
         yield return new WaitForSeconds(16f);
         Canvas.SetActive(true);
-        yield return new WaitForSeconds(113f);
+        yield return new WaitForSeconds(20f);
         SceneManager.LoadScene("Menu");
     }
 }
