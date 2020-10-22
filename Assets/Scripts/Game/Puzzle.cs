@@ -20,6 +20,7 @@ public class Puzzle : MonoBehaviour {
         } 
     }
     public void Solve() {
+        Debug.Log("Solved " + gameObject.name);
         LevelManager.instance.CurPuzzleSolved();
     }
     public void Begin() {

@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void CurPuzzleSolved() {
+        Debug.Log("Solved puzzle " + puzzleIndex + "from level " + levelIndex);
         if (levelIndex < levels.Count && puzzleIndex < levels[levelIndex].puzzles.Count) {
             puzzleIndex++;
             if (puzzleIndex == levels[levelIndex].puzzles.Count) {
@@ -42,19 +43,23 @@ public class LevelManager : MonoBehaviour {
         if (levelIndex < levels.Count) {
             puzzleIndex = 0;
             levelIndex++;
+            Debug.Log("Going to puzzle " + puzzleIndex + "from level " + levelIndex);
             BeginWin();
         }
     }
     private void BeginWin() {
+        Debug.Log("BeginWin");
         templeShot.enabled = true;
         levels.ForEach(l => l.puzzles.ForEach(p => p.Active = false));
         Invoke("ActivateCristal", 2f);
         Invoke("StartNext", 3f);
     }
     private void ActivateCristal() {
+        Debug.Log("ActivateCristal");
         cristalsToActivate[levelIndex - 1].SetActive(true);
     }
     private void StartNext() {
+        Debug.Log("StartNext");
         templeShot.enabled = false;
         levels.ForEach(l => l.puzzles.ForEach(p => p.Active = false));
         if (levelIndex < levels.Count) {

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour {
 
+    public static bool allowInput = true;
     public static float sensibility = 1f;
     public static bool invertYAxis = false;
 
@@ -37,7 +38,7 @@ public class CameraController : MonoBehaviour {
     private Vector2 rotationInputSmoothPoint = Vector2.zero;
     private Vector2 rotationInputSmoothSpeed = Vector2.zero;
 
-    public float ActionInput => string.IsNullOrEmpty(actionInputName) ? 0 : Input.GetAxis(actionInputName);
+    public float ActionInput => (string.IsNullOrEmpty(actionInputName) || !allowInput) ? 0f : Input.GetAxis(actionInputName);
     private float TresholdToAcceptNextTarget => transitionSmoothTime / 10f;
 
     public void Start() {
@@ -74,10 +75,12 @@ public class CameraController : MonoBehaviour {
         Quaternion nextRotation = curRotation;
         float nextDistance = curDistance;
         if (nextCameraShot != null) {
-            Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x) * nextCameraShot.controlledRotationSpeedMultiplier;
-            if (invertYAxis)  rotationInput.y *= -1f;
-            rotationInputSmoothPoint = Vector2.SmoothDamp(rotationInputSmoothPoint, rotationInput, ref rotationInputSmoothSpeed, inputSmoothTime);
-            curControlledRotation += rotationInputSmoothPoint * sensibility;
+            if (allowInput) {
+                Vector2 rotationInput = new Vector2(Input.GetAxis(verticalRotationInputName) * rotationInputSpeed.y, Input.GetAxis(horizontalRotationInputName) * rotationInputSpeed.x) * nextCameraShot.controlledRotationSpeedMultiplier;
+                if (invertYAxis) rotationInput.y *= -1f;
+                rotationInputSmoothPoint = Vector2.SmoothDamp(rotationInputSmoothPoint, rotationInput, ref rotationInputSmoothSpeed, inputSmoothTime);
+                curControlledRotation += rotationInputSmoothPoint * sensibility;
+            }
             nextCameraShot.ClampControlledRotation(ref curControlledRotation);
             nextPivot = nextCameraShot.GetCurrentPivot(ActionInput);
             nextRotation = nextCameraShot.GetCurrentRotation(curControlledRotation);

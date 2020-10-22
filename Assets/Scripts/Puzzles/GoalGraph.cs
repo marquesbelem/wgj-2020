@@ -64,6 +64,7 @@ public class GoalGraph : MonoBehaviour {
             PointerRegionManager.startDragRegion = null;
             InputGraphConnection.AllUpdateGraphics();
             onCompletion.Invoke();
+            enabled = false;
         }
     }
     private bool AllWishedConnectionsMade {
