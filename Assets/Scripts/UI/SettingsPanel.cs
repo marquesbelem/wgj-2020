@@ -12,28 +12,44 @@ public class SettingsPanel : MonoBehaviour {
     public Dropdown languageDropdown;
 
     private void OnEnable() {
-        masterVolumeSlider.value = SettingsManager.masterVolume;
-        masterVolumeSlider.onValueChanged.AddListener(SetNewMasterVolume);
-        
-        musicVolumeSlider.value = SettingsManager.musicVolume;
-        musicVolumeSlider.onValueChanged.AddListener(SetNewMusicVolume);
-        
-        sfxVolumeSlider.value = SettingsManager.sfxVolume;
-        sfxVolumeSlider.onValueChanged.AddListener(SetNewSFXVolume);
-
-        cameraSensibilitySlider.value = SettingsManager.CameraSensibility;
-        cameraSensibilitySlider.onValueChanged.AddListener(SetNewCameraSensibility);
-
-        languageDropdown.options = MultiLanguageManager.loadedLanguages.ConvertAll(l => new Dropdown.OptionData(l.languageID, l.flag));
-        languageDropdown.value = MultiLanguageManager.SelectedLanguageIndex;
-        languageDropdown.onValueChanged.AddListener(SetNewLanguageIndex);
+        if (masterVolumeSlider) {
+            masterVolumeSlider.value = SettingsManager.masterVolume;
+            masterVolumeSlider.onValueChanged.AddListener(SetNewMasterVolume);
+        }
+        if (musicVolumeSlider) {
+            musicVolumeSlider.value = SettingsManager.musicVolume;
+            musicVolumeSlider.onValueChanged.AddListener(SetNewMusicVolume);
+        }
+        if (sfxVolumeSlider) {
+            sfxVolumeSlider.value = SettingsManager.sfxVolume;
+            sfxVolumeSlider.onValueChanged.AddListener(SetNewSFXVolume);
+        }
+        if (cameraSensibilitySlider) {
+            cameraSensibilitySlider.value = SettingsManager.CameraSensibility;
+            cameraSensibilitySlider.onValueChanged.AddListener(SetNewCameraSensibility);
+        }
+        if (languageDropdown) {
+            languageDropdown.options = MultiLanguageManager.loadedLanguages.ConvertAll(l => new Dropdown.OptionData(l.languageID, l.flag));
+            languageDropdown.value = MultiLanguageManager.SelectedLanguageIndex;
+            languageDropdown.onValueChanged.AddListener(SetNewLanguageIndex);
+        }
     }
     private void OnDisable() {
-        masterVolumeSlider.onValueChanged.RemoveListener(SetNewMasterVolume);
-        musicVolumeSlider.onValueChanged.RemoveListener(SetNewMusicVolume);
-        sfxVolumeSlider.onValueChanged.RemoveListener(SetNewSFXVolume);
-        cameraSensibilitySlider.onValueChanged.RemoveListener(SetNewCameraSensibility);
-        languageDropdown.onValueChanged.RemoveListener(SetNewLanguageIndex);
+        if (masterVolumeSlider) {
+            masterVolumeSlider.onValueChanged.RemoveListener(SetNewMasterVolume);
+        }
+        if (musicVolumeSlider) {
+            musicVolumeSlider.onValueChanged.RemoveListener(SetNewMusicVolume);
+        }
+        if (sfxVolumeSlider) {
+            sfxVolumeSlider.onValueChanged.RemoveListener(SetNewSFXVolume);
+        }
+        if (cameraSensibilitySlider) {
+            cameraSensibilitySlider.onValueChanged.RemoveListener(SetNewCameraSensibility);
+        }
+        if (languageDropdown) {
+            languageDropdown.onValueChanged.RemoveListener(SetNewLanguageIndex);
+        }
         SettingsManager.SaveValues();
     }
 
