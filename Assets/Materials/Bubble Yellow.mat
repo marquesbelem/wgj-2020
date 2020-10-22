@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Bubble Yellow
-  m_Shader: {fileID: -6465566751694194690, guid: 682e6ef92c462d041aab9fa1b44d6eff,
+  m_Shader: {fileID: -6465566751694194690, guid: 618f45164ba65fc46828a1c6cc0a9d51,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -65,6 +65,8 @@ Material:
     - HighlightIntensity: 1
     - Intensity: 2
     - Power: 2
+    - Vector1_364AA279: 1.84
+    - Vector1_9484BE4B: 1
     - Vector1_A5898C90: 0
     - _AlphaClip: 0
     - _Blend: 0
@@ -88,6 +90,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_800D2128: {r: 1.4980392, g: 1.4039216, b: 0, a: 1}
     - Color_89880DA7: {r: 1, g: 1, b: 1, a: 1}
     - HighlightColor: {r: 1, g: 0.02233529, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
