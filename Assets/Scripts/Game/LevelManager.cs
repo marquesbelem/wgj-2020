@@ -12,8 +12,11 @@ public class LevelManager : MonoBehaviour {
     }
 
     public CameraShot templeShot;
+    public float activateCristalDelay = 2.5f;
+    public float startNextDelay = 4f;
     [Serializable] public class Level {
         public List<Puzzle> puzzles;
+        public UnityEvent onWin;
     }
     public List<Level> levels;
     public List<GameObject> cristalsToActivate;
@@ -51,8 +54,11 @@ public class LevelManager : MonoBehaviour {
         Debug.Log("BeginWin");
         templeShot.enabled = true;
         levels.ForEach(l => l.puzzles.ForEach(p => p.Active = false));
-        Invoke("ActivateCristal", 2f);
-        Invoke("StartNext", 3f);
+        Invoke("ActivateCristal", activateCristalDelay);
+        Invoke("StartNext", startNextDelay);
+        if (levelIndex < levels.Count) {
+            levels[levelIndex].onWin.Invoke();
+        }
     }
     private void ActivateCristal() {
         Debug.Log("ActivateCristal");

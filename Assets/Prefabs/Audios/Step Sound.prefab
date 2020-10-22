@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipList:
-  - {fileID: 8300000, guid: 354e23c3ceb8d42418c8affa67406003, type: 3}
-  allowRepeat: 0
+  - {fileID: 8300000, guid: 30ac9ed02c183df4da067b562c47167d, type: 3}
+  - {fileID: 8300000, guid: 3bc75f9b56b52264a8ac69353c01a05c, type: 3}
+  allowRepeat: 1
   setRandomClip:
     m_PersistentCalls:
       m_Calls:
@@ -137,8 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   valueList: []
-  rangeMin: 0.9
-  rangeMax: 1.1
+  rangeMin: 0.7
+  rangeMax: 1.3
   setRandomFloat:
     m_PersistentCalls:
       m_Calls:
@@ -223,10 +224,11 @@ AudioSource:
   m_GameObject: {fileID: 2677734175013969351}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3609561635807448835, guid: 700f65d2b91f561449c00ad0f77c8b75,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -354,8 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipList:
-  - {fileID: 8300000, guid: 354e23c3ceb8d42418c8affa67406003, type: 3}
-  allowRepeat: 0
+  - {fileID: 8300000, guid: 52ac5813a02d7664b9670b3c9f5049d6, type: 3}
+  - {fileID: 8300000, guid: b06ab1a8ea5ce5c4fbac6efdd5f3ed3a, type: 3}
+  allowRepeat: 1
   setRandomClip:
     m_PersistentCalls:
       m_Calls:

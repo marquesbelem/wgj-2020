@@ -399,11 +399,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Step Sound
       objectReference: {fileID: 0}
-    - target: {fileID: 4842640769020111952, guid: 498d0bb8438b9364b9d5379942dde730,
-        type: 3}
-      propertyPath: stepDistance
-      value: 1.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 498d0bb8438b9364b9d5379942dde730, type: 3}
 --- !u!4 &2740622376958948418 stripped

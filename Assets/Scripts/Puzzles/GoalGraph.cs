@@ -30,8 +30,9 @@ public class GoalGraph : MonoBehaviour {
         }
     }
     public List<Connection> wishedConnections;
+    public UnityEvent onConnectionMade;
     public UnityEvent onCompletion;
-    
+
     private readonly List<Connection> connections = new List<Connection>();
     private readonly List<SphericalLine> instantiatedLines = new List<SphericalLine>();
 
@@ -56,6 +57,7 @@ public class GoalGraph : MonoBehaviour {
                 newLine.start = start.region.SphereCoordinatesRef;
                 newLine.finish = end.region.SphereCoordinatesRef;
                 instantiatedLines.Add(newLine);
+                onConnectionMade.Invoke();
             }
         }
     }
